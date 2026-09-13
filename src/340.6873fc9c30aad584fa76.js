@@ -1,1 +1,2174 @@
-"use strict";(self.webpackChunksirena_tower_game=self.webpackChunksirena_tower_game||[]).push([[340],{3792:function(e,t,i){i.d(t,{U:function(){return Xe}});var s=i(2427),r=i(7871),n=i(38),o=i(1208),a=i(4755),l=i(3872),c=i(5307),d=i(5804),p=i(8383),h=i(5723);function f(e){const t=function(){const e=navigator.userAgent;return/Android/i.test(e)&&!/Firefox/i.test(e)}(),i=new a.Scene;i.fog=new a.Fog(3809134,30,80);const s=e.clientWidth||window.innerWidth,r=e.clientHeight||window.innerHeight,n=10,o=s/r,l=new a.OrthographicCamera(-10*o/2,n*o/2,5,-5,.1,200);l.position.set(10,11,10),l.lookAt(0,0,0);const f=new a.WebGLRenderer({alpha:!0,antialias:!0,powerPreference:t?"default":"high-performance"}),u=(window.matchMedia("(pointer: coarse)").matches,t?1.75:2),m=Math.min(window.devicePixelRatio,u);f.setClearColor(0,0),f.setPixelRatio(m),f.setSize(s,r),f.shadowMap.enabled=!t,f.shadowMap.type=a.PCFShadowMap,f.toneMapping=a.ACESFilmicToneMapping,f.toneMappingExposure=1.05,e.appendChild(f.domElement);const x=new a.HemisphereLight(16772859,3809134,.55);i.add(x);const g=new a.DirectionalLight(16774112,1.6);g.position.set(8,18,6),g.castShadow=!0,g.shadow.mapSize.set(2048,2048),g.shadow.camera.near=1,g.shadow.camera.far=60,g.shadow.camera.left=-12,g.shadow.camera.right=12,g.shadow.camera.top=16,g.shadow.camera.bottom=-12,g.shadow.bias=-5e-4,g.shadow.normalBias=.02,i.add(g);const b=new a.DirectionalLight(9334271,.6);b.position.set(-6,4,-8),i.add(b);const y=new c.s(f);y.setPixelRatio(m),y.setSize(s,r),y.addPass(new d.A(i,l));const v=new p.C(new a.Vector2(s,r),.55,.7,1);y.addPass(v),y.addPass(new h.X);const w=new ResizeObserver(e=>{const t=e[0];if(!t)return;const{width:i,height:s}=t.contentRect;if(0===i||0===s)return;const r=i/s;l.left=-10*r/2,l.right=n*r/2,l.top=5,l.bottom=-5,l.updateProjectionMatrix(),f.setSize(i,s),f.setPixelRatio(m),y.setPixelRatio(m),y.setSize(i,s),v.resolution.set(i,s)});w.observe(e);return{scene:i,camera:l,renderer:f,composer:y,bloom:v,keyLight:g,ambient:x,dispose:()=>{w.disconnect(),f.forceContextLoss(),f.dispose();const e=f.domElement;e.parentElement?.removeChild(e)}}}var u=i(150);const m=["#ff7a5a","#ffd166","#06d6a0","#4cc9f0","#b14aed","#ff5ea8","#84d36f","#f48c06","#ef476f","#118ab2"];function x(e){const t=new a.Color(m[e%m.length]),i={h:0,s:0,l:0};return t.getHSL(i),i.h=(i.h+.013*e)%1,t.setHSL(i.h,i.s,i.l),t}const g=new Map,b=new Map,y=new Map,v=new Map;function w(e,t,i,s){const r=function(e,t,i,s){return`${e.toFixed(3)}|${t.toFixed(3)}|${i.toFixed(3)}|${function(e){return`${e.uMin.toFixed(4)}|${e.uMax.toFixed(4)}|${e.vMin.toFixed(4)}|${e.vMax.toFixed(4)}`}(s)}`}(e,t,i,s);let n=b.get(r);if(!n){if(n=function(e,t,i,s){const r=new a.BoxGeometry(e,t,i),n=r.groups.find(e=>2===e.materialIndex),o=r.getIndex(),l=r.getAttribute("uv");if(!n||!o)return r;const c=new Set;for(let e=n.start;e<n.start+n.count;e++){const t=o.getX(e);if(c.has(t))continue;c.add(t);const i=l.getX(t),r=l.getY(t);l.setXY(t,a.MathUtils.lerp(s.uMin,s.uMax,i),a.MathUtils.lerp(s.vMin,s.vMax,r))}return l.needsUpdate=!0,r}(e,t,i,s),b.size>=256){const e=b.keys().next().value;e&&(b.get(e)?.dispose(),b.delete(e))}b.set(r,n)}return n}function k(e,t,i,s,r){const n=function(e){return`${e.topTextureUrl}|${e.leftColor}|${e.rightColor}`}(s);let o=y.get(n);o||(o=[],y.set(n,o));let l=o.pop();return l||(l=D(e,t,i,function(e){let t=v.get(e);return t||(t=new a.Color(e),v.set(e,t)),t}(s.rightColor),s.topTextureUrl,s.leftColor,s.rightColor),l.castShadow=!0,l.receiveShadow=!0),l.geometry=w(e,t,i,r),_(l,1),l.scale.set(1,1,1),l.position.set(0,0,0),l.quaternion.set(0,0,0,1),{mesh:l,poolKey:n}}function j(e,t){e.removeFromParent(),e.scale.set(1,1,1);const i=Array.isArray(e.material)?e.material:[e.material];for(const e of i)e.transparent=!0,e.opacity=1;let s=y.get(t);s||(s=[],y.set(t,s)),s.push(e)}const M={uMin:0,uMax:1,vMin:0,vMax:1};const R=new Map,z=new a.TextureLoader;function S(e){return e.colorSpace=a.SRGBColorSpace,e.anisotropy=8,e}async function C(e){await Promise.all(e.map(async e=>{if(R.has(e))return;const t=S(await z.loadAsync(e));R.set(e,t)}))}function A(e){const t=R.get(e);if(t)return t;const i=S(z.load(e));return R.set(e,i),i}function F(e,t={}){return new a.MeshStandardMaterial({color:e,roughness:.45,metalness:.05,emissive:e.clone().multiplyScalar(t.emissive??.08)})}function D(e,t,i,s,r,n="#c2135c",o="#ff4392",l=M){const c=F(new a.Color(n)),d=F(new a.Color(o)),p=F(s),h=[d,d,new a.MeshBasicMaterial({map:A(r)}),p,c,c],f=0===l.uMin&&1===l.uMax&&0===l.vMin&&1===l.vMax?function(e,t,i){const s=`${e.toFixed(3)}|${t.toFixed(3)}|${i.toFixed(3)}`;let r=g.get(s);return r||(r=new a.BoxGeometry(e,t,i),g.set(s,r)),r}(e,t,i):w(e,t,i,l),u=new a.Mesh(f,h);return u.castShadow=!0,u.receiveShadow=!0,u}function _(e,t=1){const i=Array.isArray(e.material)?e.material:[e.material];for(const e of i)e.transparent=!0,e.opacity=t}function $(e){!0===e.geometry.userData.disposeWithBlockMesh&&e.geometry.dispose()}function T(e){if(Array.isArray(e.material)){const t=new Set;for(const i of e.material)t.has(i)||(t.add(i),i.dispose())}else e.material.dispose()}var L=i(3684);const P="game-start",O="game-end",E="block-clap",B="game-background",I=1,J=.5,N=.5,Y=.8,Q=.35;let U=null,H=null;const q=(e,t)=>`${e.replace(/\/$/,"")}/assets/sound/${t}`,W=(e,t,i={})=>new Promise(s=>{const r=n=>{L.J.register(e,{src:[t],preload:!0,html5:n,...i,onload:()=>s(),onloaderror:()=>{n?s():r(!0)}})};r(!1)}),V=e=>(U&&H===e||(H=e,U=Promise.all([W(P,q(e,"start.mp3"),{volume:J}),W(O,q(e,"end.mp3"),{volume:N}),W(E,q(e,"clap.mp3"),{volume:Y}),W(B,q(e,"background.mp3"),{loop:!0,volume:Q})]).then(()=>{})),U),X={playBackground(){L.J.isPlaying(B)||L.J.play(B)},applyVolumes(){L.J.setGlobalVolume(I),L.J.setVolume(P,J),L.J.setVolume(O,N),L.J.setVolume(E,Y),L.J.setVolume(B,Q)},previewStart(){L.J.stop(P),L.J.play(P)},previewEnd(){L.J.stop(O),L.J.play(O)},previewClap(){L.J.play(E)},toggleBackground(){L.J.stop(B),L.J.play(B)},start(){L.J.stop(O),L.J.play(P),this.playBackground()},end(){L.J.stop(B),L.J.play(O)},clap(){L.J.play(E)},pause(){L.J.pause(B)},resume(){L.J.play(B)},stop(){L.J.stop(P),L.J.stop(O),L.J.stop(B)}};var G=i(4779),K=i(8255),Z=i(5011),ee=i(1627),te=i(6971),ie=i(6665),se=i(7375),re=i(960),ne=i(5796),oe=i(520),ae=i(6224),le=i(1936),ce=i(8482),de=i(4916);const pe=[{texture:Z,left:"#c2135c",right:"#ff4392"},{texture:G,left:"#1e4acc",right:"#4876ff"},{texture:K,left:"#65b23c",right:"#aeff82"},{texture:ee,left:"#c4c400",right:"#fffe3d"},{texture:te,left:"#999999",right:"#e6e6e6"},{texture:ie,left:"#5b5b5b",right:"#a3a3a3"},{texture:se,left:"#363636",right:"#464646"},{texture:oe,left:"#c2135c",right:"#ff4392"},{texture:re,left:"#1e4acc",right:"#4876ff"},{texture:ne,left:"#65b23c",right:"#aeff82"},{texture:ae,left:"#c4c400",right:"#fffe3d"},{texture:le,left:"#999999",right:"#e6e6e6"},{texture:ce,left:"#5b5b5b",right:"#a3a3a3"},{texture:de,left:"#363636",right:"#464646"}];function he(e){return pe[e%pe.length]}function fe(e,t,i,s){if("x"===t){const t=e.uMax-e.uMin;return{...e,uMin:e.uMin+t*i,uMax:e.uMin+t*s}}const r=e.vMax-e.vMin;return{...e,vMin:e.vMin+r*(1-s),vMax:e.vMin+r*(1-i)}}class ue{config={blockHeight:.3,initialSize:2.4,baseSpeed:3.6,speedPerLevel:.12,maxSpeed:9,perfectThreshold:.08,cameraOffsetY:3.5,cameraEase:.06,bloomStrength:.55,bloomThreshold:1,bloomRadius:.7,exposure:1.05,shake:.12,towerFriction:2.4,towerRestitution:0,towerDensity:.6,towerLinearDamping:.5,towerAngularDamping:.7,gravity:-18};state="idle";paused=!1;score=0;streak=0;placed=[];current=null;debris=[];skipNextRender=!1;lastTapAcceptedAt=0;lastWarmupDurationMs=0;debrisReserve=null;cameraTargetY=0;cameraSmoothedY=0;cameraBaseOffset=new a.Vector3;shakeAmp=0;scoreListeners=[];perfectListeners=[];stateListeners=[];cameraOffsetListeners=[];tapListeners=[];animationId=null;introDropAnimationId=null;perfFrameCount=0;perfFrameDurationTotal=0;perfLastFrameAt=null;perfLastReportAt=performance.now();perfLongFrames=0;perfWorstFrame=0;onScore(e){this.scoreListeners.push(e)}onPerfect(e){this.perfectListeners.push(e)}onState(e){this.stateListeners.push(e)}onCameraOffset(e){this.cameraOffsetListeners.push(e)}onTapOutcome(e){this.tapListeners.push(e)}emitScore(e){for(const t of this.scoreListeners)t(e)}emitPerfect(e){for(const t of this.perfectListeners)t(e)}emitState(e){for(const t of this.stateListeners)t(e)}emitTapOutcome(e){(0,u.u3)()&&(0,u.MJ)("tap_outcome",{blockOffset:Number(e.blockOffset.toFixed(4)),floorsAfter:e.floorsAfter,result:e.result});for(const t of this.tapListeners)t(e)}timer=new a.Timer;constructor(e){this.ctx=f(e),this.cameraBaseOffset.copy(this.ctx.camera.position),this.timer.connect(document)}async init(e=""){await Promise.all([l.default.init(),C(pe.map(({texture:e})=>e)),V(e)]),this.world=new l.default.World({x:0,y:this.config.gravity,z:0}),this.buildPodium(),this.reset(),this.warmupColdPaths(),X.playBackground(),this.animate()}warmupColdPaths(){const e=performance.now(),t=this.config.blockHeight,i=.8*this.config.initialSize,s=this.config.initialSize,r=[],n=[],o=[fe(M,"x",.2,.8),fe(M,"z",.15,.65),fe(M,"x",.4,.9)];for(const e of o)w(i,t,s,e);for(const e of pe){r.push(this.addPlacedCollider(0,-100,0,i,s)),this.spawnDebris(0,-100,0,.25,s,e.texture,e.left,e.right,o[0],this.config.baseSpeed,{silent:!0});const t=this.debris.pop();t&&(this.world.removeRigidBody(t.body),j(t.mesh,t.poolKey))}for(let e=0;e<pe.length;e++){const r=he(e),a=D(i,t,s,x(e),r.texture,r.left,r.right,o[0]);a.position.set(0,-100,0),this.ctx.scene.add(a),n.push(a)}for(let e=0;e<4;e++)this.world.step();this.ctx.renderer.render(this.ctx.scene,this.ctx.camera);for(const e of n)this.ctx.scene.remove(e),$(e),T(e);for(const e of r)this.world.removeRigidBody(e);this.lastWarmupDurationMs=Number((performance.now()-e).toFixed(2)),(0,u.u3)()&&(0,u.MJ)("warmup_complete",{appearances:pe.length,durationMs:this.lastWarmupDurationMs,movingMeshes:pe.length})}destroy(){X.stop(),null!==this.introDropAnimationId&&(cancelAnimationFrame(this.introDropAnimationId),this.introDropAnimationId=null),null!==this.animationId&&(cancelAnimationFrame(this.animationId),this.animationId=null),this.clearDebris(),this.skipNextRender=!1;for(const e of this.placed)this.ctx.scene.remove(e.mesh),$(e.mesh),T(e.mesh),e.body&&this.world.removeRigidBody(e.body);this.placed=[],this.current&&(this.ctx.scene.remove(this.current.mesh),$(this.current.mesh),T(this.current.mesh),this.current=null),this.ctx.dispose(),y.forEach(e=>{for(const t of e)T(t)}),y.clear(),this.timer.dispose(),this.scoreListeners=[],this.perfectListeners=[],this.stateListeners=[],this.cameraOffsetListeners=[]}buildPodium(){const e=this.world.createRigidBody(l.default.RigidBodyDesc.fixed().setTranslation(0,-.5,0));this.world.createCollider(l.default.ColliderDesc.cuboid(40,.5,40),e)}activeDebrisCount(){return this.debris.length+(this.debrisReserve?1:0)}releaseDebris(e){this.ctx.scene.remove(e.mesh),j(e.mesh,e.poolKey),this.world&&this.world.removeRigidBody(e.body)}releaseDebrisReserve(){this.debrisReserve&&(this.releaseDebris(this.debrisReserve),this.debrisReserve=null)}stashDebrisReserve(e){this.releaseDebrisReserve();const t=e.body.translation(),i=e.body.rotation();e.body.setTranslation({x:t.x,y:t.y,z:t.z},!0),e.body.setRotation({x:i.x,y:i.y,z:i.z,w:i.w},!0),e.body.setLinvel({x:0,y:0,z:0},!0),e.body.setAngvel({x:0,y:0,z:0},!0),e.mesh.position.set(t.x,t.y,t.z),e.mesh.quaternion.set(i.x,i.y,i.z,i.w);const s=Array.isArray(e.mesh.material)?e.mesh.material:[e.mesh.material];for(const e of s)e.opacity=1;this.debrisReserve=e}pinDebrisReserve(){if(!this.debrisReserve)return;const{x:e,y:t,z:i}=this.debrisReserve.mesh.position,s=this.debrisReserve.mesh.quaternion;this.debrisReserve.body.setTranslation({x:e,y:t,z:i},!0),this.debrisReserve.body.setRotation({x:s.x,y:s.y,z:s.z,w:s.w},!0),this.debrisReserve.body.setLinvel({x:0,y:0,z:0},!0),this.debrisReserve.body.setAngvel({x:0,y:0,z:0},!0)}addPlacedCollider(e,t,i,s,r){const n=this.config.blockHeight,o=this.world.createRigidBody(l.default.RigidBodyDesc.fixed().setTranslation(e,t,i));return this.world.createCollider(l.default.ColliderDesc.cuboid(s/2,n/2,r/2).setFriction(this.config.towerFriction).setRestitution(this.config.towerRestitution),o),o}reset(){X.stop(),null!==this.introDropAnimationId&&(cancelAnimationFrame(this.introDropAnimationId),this.introDropAnimationId=null),this.paused=!1,this.skipNextRender=!1,this.lastTapAcceptedAt=0;for(const e of this.placed)this.ctx.scene.remove(e.mesh),$(e.mesh),T(e.mesh),e.body&&this.world.removeRigidBody(e.body);this.placed=[],this.current&&(this.ctx.scene.remove(this.current.mesh),$(this.current.mesh),T(this.current.mesh),this.current=null),this.clearDebris(),this.score=0,this.streak=0,this.emitScore(0),this.emitPerfect(0);const e=this.config.initialSize,t=this.config.blockHeight,i=x(0),s=he(0),r=t/2,n=D(e,t,e,i,s.texture,s.left,s.right);n.position.set(0,r,0),_(n),this.ctx.scene.add(n),this.placed.push({mesh:n,body:this.addPlacedCollider(0,r,0,e,e),sx:e,sz:e,px:0,pz:0,py:r,color:i,textureRegion:{...M}}),this.cameraTargetY=r,this.cameraSmoothedY=this.cameraTargetY,this.ctx.camera.position.set(this.cameraBaseOffset.x,this.cameraBaseOffset.y+this.cameraSmoothedY,this.cameraBaseOffset.z),this.ctx.camera.lookAt(0,this.cameraSmoothedY+this.config.cameraOffsetY,0),this.setState("idle")}prepareIntroDrop(){const e=this.placed[0]?.mesh;e&&(e.visible=!1)}playIntroDrop(){const e=this.placed[0]?.mesh;if(!e||e.visible)return;const t=this.placed[0].py,i=t+4*this.config.blockHeight,s=performance.now();e.position.y=i,e.visible=!0;const r=n=>{const o=Math.min(1,(n-s)/280),a=o*o;e.position.y=i+(t-i)*a,o<1?this.introDropAnimationId=requestAnimationFrame(r):(e.position.y=t,this.introDropAnimationId=null,this.pulseBlock(e),this.bumpShake(.12))};this.introDropAnimationId=requestAnimationFrame(r)}setState(e){const t=this.state;this.state=e,"gameover"===e&&"gameover"!==t&&X.end(),this.emitState(e)}start(){if("playing"!==this.state&&("gameover"===this.state&&this.reset(),this.paused=!1,this.setState("playing"),X.start(),this.spawnNext(),(0,u.u3)())){(0,u.wA)(),this.resetPerformanceCounters();const e=this.ctx.renderer.getContext().getContextAttributes();(0,u.MJ)("game_start",{alpha:e?.alpha??null,antialias:e?.antialias??null,debrisReserve:null!==this.debrisReserve,pixelRatio:this.ctx.renderer.getPixelRatio(),renderer:this.ctx.renderer.info.programs?.length??0,shadows:this.ctx.renderer.shadowMap.enabled,warmupAppearances:pe.length,warmupMs:this.lastWarmupDurationMs})}}pause(){"playing"===this.state&&(this.paused=!0,this.skipNextRender=!1,X.pause())}resume(){"playing"===this.state&&(this.paused=!1,X.resume(),this.timer.reset())}spawnNext(){const e=(0,u.u3)()?performance.now():0,t=this.placed[this.placed.length-1],i=this.placed.length,s=i%2==1?"x":"z",r=Math.random()<.5?1:-1,n=this.config.blockHeight,o=x(i),a=he(i),l=t.sx,c=t.sz,d=t.py+n,p="x"===s?t.px-5.5*r:t.px,h="z"===s?t.pz-5.5*r:t.pz,f=D(l,n,c,o,a.texture,a.left,a.right,t.textureRegion);f.position.set(p,d,h),_(f),this.ctx.scene.add(f);const m=Math.min(this.config.maxSpeed,this.config.baseSpeed+this.config.speedPerLevel*(i-1));this.current={mesh:f,sx:l,sz:c,py:d,axis:s,dir:r,speed:m,travel:11,travelled:0,color:o,topTextureUrl:a.texture,leftColor:a.left,rightColor:a.right,textureRegion:{...t.textureRegion}},e>0&&((0,u.MJ)("spawn_next",{appearanceIndex:i%pe.length,axis:s,debris:this.activeDebrisCount(),durationMs:Number((performance.now()-e).toFixed(2)),floorIndex:i}),requestAnimationFrame(()=>{(0,u.MJ)("spawn_next_frame",{durationMs:Number((performance.now()-e).toFixed(2)),floorIndex:i})}))}queueTap(){if(this.paused)return;const e=performance.now();if(e-this.lastTapAcceptedAt<300)return;if(this.lastTapAcceptedAt=e,"idle"===this.state||"gameover"===this.state||!this.current)return void this.processTap();const t=this.current,i={movingPos:"x"===t.axis?t.mesh.position.x:t.mesh.position.z,crossX:t.mesh.position.x,crossZ:t.mesh.position.z},s=(0,u.u3)()?performance.now():0;s>0&&(0,u.MJ)("tap",{axis:t.axis,debris:this.activeDebrisCount(),dir:t.dir,floors:this.score,hasMovingBlock:!0,state:this.state}),this.placeBlock(i),this.presentTapCut(s)}onTap(){this.queueTap()}presentTapCut(e){const t=e>0&&(0,u.u3)(),i=t?performance.now():0;this.skipNextRender=!0,this.ctx.renderer.render(this.ctx.scene,this.ctx.camera),t&&(0,u.MJ)("cut_rendered",{durationMs:Number((performance.now()-i).toFixed(2)),sinceTapMs:Number((performance.now()-e).toFixed(2))}),X.clap(),t&&((0,u.MJ)("clap_at",{sinceTapMs:Number((performance.now()-e).toFixed(2))}),(0,u.MJ)("tap_processed",{durationMs:Number((performance.now()-e).toFixed(2))}),requestAnimationFrame(()=>{(0,u.MJ)("tap_next_frame",{durationMs:Number((performance.now()-e).toFixed(2))})}))}processTap(){const e=(0,u.u3)(),t=e?performance.now():0;if(e&&(0,u.MJ)("tap",{debris:this.activeDebrisCount(),floors:this.score,hasMovingBlock:null!==this.current,state:this.state}),"idle"===this.state)return void this.start();if("gameover"===this.state)return void this.reset();if(!this.current)return;const i=this.current,s={movingPos:"x"===i.axis?i.mesh.position.x:i.mesh.position.z,crossX:i.mesh.position.x,crossZ:i.mesh.position.z};this.placeBlock(s),this.presentTapCut(t)}placeBlock(e){const t=this.current;"x"===t.axis?t.mesh.position.x=e.movingPos:t.mesh.position.z=e.movingPos;const i=this.placed[this.placed.length-1],s=t.axis,r=e.movingPos,n="x"===s?i.px:i.pz,o="x"===s?t.sx:t.sz,a="x"===s?i.sx:i.sz,l=r-o/2,c=r+o/2,d=n-a/2,p=n+a/2,h=Math.max(l,d),f=Math.min(c,p),u=f-h;if(u<=0)return this.emitTapOutcome({blockOffset:r-n,floorsAfter:this.score,result:"miss"}),this.spawnDebrisFromCurrent(t,e.crossX,e.crossZ,t.sx,t.sz),this.ctx.scene.remove(t.mesh),$(t.mesh),T(t.mesh),this.current=null,void this.gameOver();const m=Math.abs(r-n)<this.config.perfectThreshold;let x,g,b=t.textureRegion;if(m)x=o,g=n,this.streak+=1,this.emitPerfect(this.streak),this.bumpShake(.4);else{x=u,g=(h+f)/2,this.streak=0,this.emitPerfect(0);const i=o-u,a=r<n?l+i/2:c-i/2,d="x"===s?a:e.crossX,p="z"===s?a:e.crossZ,m="x"===s?i:t.sx,y="z"===s?i:t.sz,v=(h-l)/o,w=(f-l)/o,k=r<n,j=k?0:w,M=k?v:1;b=fe(t.textureRegion,s,v,w);const R=fe(t.textureRegion,s,j,M);this.spawnDebris(d,t.py,p,m,y,t.topTextureUrl,t.leftColor,t.rightColor,R,t.speed)}const y=this.config.blockHeight,v="x"===s?x:t.sx,k="z"===s?x:t.sz,j="x"===s?g:e.crossX,M="z"===s?g:e.crossZ,R=i.py+y,z=w(v,y,k,b);$(t.mesh),t.mesh.geometry=z,t.mesh.position.set(j,R,M),function(e){const t=Array.isArray(e.material)?e.material:[e.material];for(const e of t)e.transparent=!1,e.opacity=1}(t.mesh);const S={mesh:t.mesh,body:this.addPlacedCollider(j,R,M,v,k),sx:v,sz:k,px:j,pz:M,py:R,color:t.color,textureRegion:b};this.placed.push(S),this.current=null,this.score=this.placed.length-1,this.emitScore(this.score),this.emitTapOutcome({blockOffset:r-n,floorsAfter:this.score,result:m?"perfect":"partial"});const C=Math.max(0,this.placed.length-10);this.cameraTargetY=this.placed[0].py+C*this.config.blockHeight,this.pulseBlock(S.mesh),this.spawnNext()}spawnDebrisFromCurrent(e,t,i,s,r){this.spawnDebris(t,e.py,i,s,r,e.topTextureUrl,e.leftColor,e.rightColor,e.textureRegion,e.speed)}spawnDebris(e,t,i,s,r,n,o,a,c,d,p={}){p.silent||this.releaseDebrisReserve();const h=this.config.blockHeight,f={topTextureUrl:n,leftColor:o,rightColor:a},{mesh:m,poolKey:x}=k(s,h,r,f,c);m.position.set(e,t,i),this.ctx.scene.add(m);const g=this.world.createRigidBody(l.default.RigidBodyDesc.dynamic().setTranslation(e,t,i).setAngularDamping(.2).setLinearDamping(.05));this.world.createCollider(l.default.ColliderDesc.cuboid(s/2,h/2,r/2).setRestitution(.25).setFriction(.6).setDensity(1),g);const b=this.placed[this.placed.length-1],y=e-(b?b.px:0),v=i-(b?b.pz:0),w=Math.hypot(y,v)||1,j=.35*d;g.setLinvel({x:y/w*j,y:.5,z:v/w*j},!0),g.setAngvel({x:4*(Math.random()-.5),y:4*(Math.random()-.5),z:4*(Math.random()-.5)},!0),this.debris.push({mesh:m,body:g,spawnedAt:performance.now(),poolKey:x}),!p.silent&&(0,u.u3)()&&(0,u.MJ)("debris_created",{activeDebris:this.activeDebrisCount(),count:this.debris.length,sizeX:Number(s.toFixed(3)),sizeZ:Number(r.toFixed(3))})}pulseBlock(e){const t=performance.now(),i=()=>{const s=(performance.now()-t)/220;if(s>=1)return void e.scale.set(1,1,1);const r=1-Math.pow(1-s,3),n=1+.18*(1-r),o=1-.04*(1-r);e.scale.set(o,n,o),requestAnimationFrame(i)};i()}bumpShake(e){this.shakeAmp=Math.min(1,this.shakeAmp+e)}gameOver(){"gameover"!==this.state&&(this.setState("gameover"),this.current&&(this.ctx.scene.remove(this.current.mesh),$(this.current.mesh),T(this.current.mesh),this.current=null),this.bumpShake(.35))}clearDebris(){for(const e of this.debris)this.releaseDebris(e);this.debris=[],this.releaseDebrisReserve(),this.skipNextRender=!1}updateDebris(e){const t=3500;for(let i=this.debris.length-1;i>=0;i--){const s=this.debris[i],r=s.body.translation(),n=s.body.rotation();s.mesh.position.set(r.x,r.y,r.z),s.mesh.quaternion.set(n.x,n.y,n.z,n.w);const o=e-s.spawnedAt;if(o>2900){const e=Array.isArray(s.mesh.material)?s.mesh.material:[s.mesh.material];if(1===this.debris.length)for(const t of e)t.opacity=1;else{const t=Math.max(0,1-(o-2900)/600);for(const i of e)i.opacity=t}}if(o>t||r.y<-20){if(1===this.debris.length){this.stashDebrisReserve(s),this.debris.splice(i,1),(0,u.u3)()&&(0,u.MJ)("debris_reserved",{activeDebris:this.activeDebrisCount(),visibleDebris:this.debris.length});continue}this.releaseDebris(s),this.debris.splice(i,1),(0,u.u3)()&&(0,u.MJ)("debris_removed",{activeDebris:this.activeDebrisCount(),count:this.debris.length})}}}updateCurrent(e){if(!this.current)return;const t=this.current,i=t.speed*e*t.dir;"x"===t.axis?t.mesh.position.x+=i:t.mesh.position.z+=i;const s=this.placed[this.placed.length-1],r="x"===t.axis?s.px:s.pz,n="x"===t.axis?t.mesh.position.x:t.mesh.position.z,o=t.travel/2;if(Math.abs(n-r)>=o){const e=r+Math.sign(n-r)*o;"x"===t.axis?t.mesh.position.x=e:t.mesh.position.z=e,t.dir=-1*t.dir,(0,u.u3)()&&(0,u.MJ)("dir_reversed",{axis:t.axis,debris:this.activeDebrisCount(),floors:this.score})}}updateCamera(e){const t=this.ctx.camera,i=1-Math.exp(60*-this.config.cameraEase*e);this.cameraSmoothedY+=(this.cameraTargetY-this.cameraSmoothedY)*i,t.position.x=this.cameraBaseOffset.x,t.position.y=this.cameraBaseOffset.y+this.cameraSmoothedY,t.position.z=this.cameraBaseOffset.z,t.lookAt(0,this.cameraSmoothedY+this.config.cameraOffsetY,0);const s=this.placed[0]?.py??this.cameraSmoothedY,r=Math.max(0,this.cameraSmoothedY-s);for(const e of this.cameraOffsetListeners)e(r);if(this.shakeAmp>.001){const i=this.shakeAmp*this.config.shake;t.position.x+=(Math.random()-.5)*i,t.position.z+=(Math.random()-.5)*i,this.shakeAmp*=Math.pow(.001,e)}}applyBloomFromConfig(){this.ctx.bloom.strength=this.config.bloomStrength,this.ctx.bloom.threshold=this.config.bloomThreshold,this.ctx.bloom.radius=this.config.bloomRadius,this.ctx.renderer.toneMappingExposure=this.config.exposure}applyGravity(){this.world.gravity.y=this.config.gravity,this.debrisReserve?.body.wakeUp();for(const e of this.debris)e.body.wakeUp()}resetPerformanceCounters(){const e=performance.now();this.perfFrameCount=0,this.perfFrameDurationTotal=0,this.perfLastFrameAt=null,this.perfLastReportAt=e,this.perfLongFrames=0,this.perfWorstFrame=0}updatePerformanceLog(e,t){if(!(0,u.u3)())return;if("playing"!==this.state)return void(this.perfLastFrameAt=e);if(null!==this.perfLastFrameAt){const t=e-this.perfLastFrameAt;this.perfFrameCount+=1,this.perfFrameDurationTotal+=t,this.perfWorstFrame=Math.max(this.perfWorstFrame,t),t>=50&&(this.perfLongFrames+=1,(0,u.MJ)("long_frame",{debris:this.activeDebrisCount(),durationMs:Number(t.toFixed(2)),floors:this.score,moving:null!==this.current}))}this.perfLastFrameAt=e;const i=e-this.perfLastReportAt;if(i<1e3||0===this.perfFrameCount)return;const s=this.ctx.renderer.info,r=performance.memory;(0,u.MJ)("fps_sample",{averageFrameMs:Number((this.perfFrameDurationTotal/this.perfFrameCount).toFixed(2)),calls:s.render.calls,debris:this.activeDebrisCount(),floors:this.score,fps:Number((1e3*this.perfFrameCount/i).toFixed(1)),geometries:s.memory.geometries,longFrames:this.perfLongFrames,...r?{heapLimitMb:Number((r.jsHeapSizeLimit/1048576).toFixed(1)),heapUsedMb:Number((r.usedJSHeapSize/1048576).toFixed(1))}:{},renderDurationMs:Number(t.toFixed(2)),textures:s.memory.textures,triangles:s.render.triangles,worstFrameMs:Number(this.perfWorstFrame.toFixed(2))}),this.perfFrameCount=0,this.perfFrameDurationTotal=0,this.perfLastReportAt=e,this.perfLongFrames=0,this.perfWorstFrame=0}animate=e=>{this.animationId=requestAnimationFrame(this.animate),this.timer.update(e);const t=Math.min(.05,this.timer.getDelta()),i=performance.now();this.paused||(this.world.step(),this.debris.length>0&&this.updateDebris(i),this.pinDebrisReserve(),this.updateCurrent(t),this.updateCamera(t));let s=0;if(this.skipNextRender)this.skipNextRender=!1;else if((0,u.u3)()){const e=performance.now();this.ctx.renderer.render(this.ctx.scene,this.ctx.camera),s=performance.now()-e,this.updatePerformanceLog(i,s)}else this.ctx.renderer.render(this.ctx.scene,this.ctx.camera)}}var me=i(5595),xe=i(3546);const ge=e=>Math.max(1,Math.round(e.current)),be=()=>{const e=xe.SP.defaults.headers.common.Authorization,t="string"==typeof e?e:void 0;return{Accept:"application/json","Content-Type":"application/json;charset=UTF-8",...t?{Authorization:t}:{}}},ye=(e,t)=>{const i=xe.SP.defaults.baseURL??"";fetch(`${i}${e}`,{method:"POST",headers:be(),body:JSON.stringify(t),keepalive:!0}).catch(()=>{})},ve=(e,t)=>{ye("/game/session/ping",{session_id:e.session_id,session_holder_id:e.session_holder_id,duration_ms:t})},we=({elapsedRef:e,enabled:t=!0,gameState:i,onSessionBlocked:r,onStartError:o,score:a})=>{const l=(0,s.useRef)(null),c=(0,s.useRef)(!1),d=(0,s.useRef)(null),p=(0,s.useRef)(0),h=(0,s.useRef)([]),f=(0,s.useRef)(0),[u,m,x]=(0,n.useUnit)([me.vH,me.PK,me.Qm.pending]);(0,s.useEffect)(()=>{d.current=u},[u]);const g=(0,s.useCallback)(async()=>{if(!t)return;const i=d.current;if(!i||0===h.current.length)return;const s=h.current.splice(0,50);try{await(0,me.E)({session_id:i.session_id,session_holder_id:i.session_holder_id,duration_ms:ge(e),taps:s})}catch{h.current.unshift(...s)}},[e,t]),b=(0,s.useCallback)(i=>{t&&(h.current.push({tap_index:p.current++,timestamp_ms:Math.round(e.current),block_offset:i.blockOffset,result:i.result,floors_after:i.floorsAfter}),h.current.length>=10&&g())},[e,t,g]),y=(0,s.useCallback)(()=>{t&&!c.current&&(c.current=!0,(0,me.L2)((0,me.i$)()).catch(e=>{c.current=!1,o?.(e)}))},[t,o]);(0,s.useEffect)(()=>{"idle"===i&&(c.current=!1)},[i]),(0,s.useEffect)(()=>{t&&u&&g()},[u,t,g]),(0,s.useEffect)(()=>{if(!t||"playing"!==i)return;const e=window.setInterval(()=>{g()},2e3);return()=>window.clearInterval(e)},[t,g,i]),(0,s.useEffect)(()=>{if(!t||!u||"playing"!==i)return;const s=window.setInterval(()=>{(0,me.vx)({session_id:u.session_id,session_holder_id:u.session_holder_id,duration_ms:ge(e)}).catch(e=>{e instanceof xe.hD&&("session revoked"===e.code||"session not found"===e.code)&&((0,me.S0)(),r())})},3e4);return()=>window.clearInterval(s)},[u,e,t,i,r]),(0,s.useEffect)(()=>{if(!t)return;const i=()=>{const e=Date.now();return e-f.current<500||(f.current=e,!1)},s=()=>{const t=d.current;if(!t||i())return;const s=ge(e);((e,t,i)=>{0!==t.length&&ye("/game/taps",{session_id:e.session_id,session_holder_id:e.session_holder_id,duration_ms:i,taps:t})})(t,h.current.splice(0,50),s),ve(t,s)},r=()=>{if("hidden"!==document.visibilityState)return;const t=d.current;t&&!i()&&(g(),ve(t,ge(e)))};return window.addEventListener("pagehide",s),document.addEventListener("visibilitychange",r),()=>{window.removeEventListener("pagehide",s),document.removeEventListener("visibilitychange",r)}},[e,t,g]),(0,s.useEffect)(()=>{t&&u&&"gameover"===i&&!x&&l.current!==u.session_id&&(l.current=u.session_id,(async()=>{await g(),await(0,me.Qm)({session_id:u.session_id,session_holder_id:u.session_holder_id,floors:Math.max(0,a),duration_ms:ge(e),end_reason:"collapsed"})})())},[u,e,t,x,g,i,a]);const v=(0,s.useCallback)((t,i)=>{if(!u)return;const s=ge(e);(t?me.a7:me.bF)({session_id:u.session_id,session_holder_id:u.session_holder_id,duration_ms:s}).then(()=>i(!t))},[u,e]);return{activeSession:u,endPending:x,error:m,recordTap:b,startSession:y,togglePause:v}};i(633);var ke=i(3717),je=i(8591),Me=i(669),Re=i(6918),ze=i(4848);const Se=({floors:e,onConfirm:t,onExit:i,onRestart:s,training:r=!1})=>(0,ze.jsxs)(Ae,{"aria-label":"Игра завершена","aria-modal":"true",onPointerDown:e=>e.stopPropagation(),role:"dialog",children:[(0,ze.jsxs)(Fe,{children:[(0,ze.jsxs)(De,{children:[(0,ze.jsx)(_e,{"aria-hidden":"true"}),(0,ze.jsx)($e,{children:(0,ze.jsxs)(Te,{"aria-label":r?`Результат: ${e} этажей`:`Зачислено этажей: ${e}`,children:[(0,ze.jsx)(Le,{children:r?e:`+${e}`}),(0,ze.jsx)(Me.I,{"aria-hidden":"true",height:16,name:"layer",width:16})]})})]}),(0,ze.jsx)(Pe,{children:r?"Твой результат":"Зачислили на баланс"})]}),r?(0,ze.jsxs)(Ee,{children:[(0,ze.jsx)(Be,{onClick:i,variant:"secondary",children:"Выйти"}),(0,ze.jsx)(Be,{onClick:s,children:"Играть ещё"})]}):(0,ze.jsx)(Oe,{onClick:t,children:"Супер!"})]}),Ce=(0,r.keyframes)(["from{opacity:0;}to{opacity:1;}"]),Ae=r.default.div(["display:flex;justify-content:center;align-items:center;padding:24px 16px 32px;position:absolute;z-index:101;inset:0;background:rgb(3 14 25 / 70%);backdrop-filter:blur(12px);animation:"," 300ms ease-out both;"],Ce),Fe=r.default.div(["display:flex;align-items:center;flex-direction:column;"]),De=r.default.div(["width:240px;height:240px;position:relative;"]),_e=(0,r.default)(ke.A)(["display:block;width:240px;height:240px;"]),$e=r.default.div(["position:absolute;top:50px;right:2px;"]),Te=r.default.div(["display:flex;justify-content:center;align-items:center;gap:4px;height:40px;min-width:83px;padding:8px 12px;border-radius:100px;background:rgb(255 255 255 / 15%);color:#fff;backdrop-filter:blur(15px);"]),Le=r.default.span(["font-family:",";font-size:24px;font-weight:400;line-height:30px;white-space:nowrap;font-feature-settings:'liga' off,'clig' off;"],Re.pQ.onyOne),Pe=r.default.div(["color:#fff;font-family:",";font-size:24px;font-weight:400;line-height:30px;text-align:center;font-feature-settings:'liga' off,'clig' off;"],Re.pQ.onyOne),Oe=(0,r.default)(je.m)(["width:225px;position:absolute;bottom:var(--navigation-bottom);left:50%;transform:translateX(-50%);"]),Ee=r.default.div(["display:flex;gap:16px;width:calc(100% - 32px);position:absolute;bottom:var(--navigation-bottom);left:16px;"]),Be=(0,r.default)(je.m)(["flex:1;backdrop-filter:none !important;"]),Ie=(0,r.createGlobalStyle)([".game-page-root{width:100%;height:100%;position:relative;overflow:hidden;}@media (max-width:768px){.game-page-root{width:100%;height:100%;padding:0;}}.game-page-root,.game-page-root *{touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}.game-page-root canvas{display:block !important;width:100% !important;height:100% !important;}.tp-dfwv{z-index:1000 !important;pointer-events:all !important;}"]);var Je=i(7568),Ne=i(8627),Ye=i(5887),Qe=i(8156),Ue=i(7795),He=i(3040),qe=i(5424),We=i(2006);const Ve=({elapsedRef:e,gameState:t,headerVisible:i,isPaused:r,isSoundEnabled:n,onPauseToggle:o,onSoundToggle:a})=>{const l=((e,t,i)=>{const[r,n]=(0,s.useState)(0);return(0,s.useEffect)(()=>{if("idle"===e)return i.current=0,void n(0);if("playing"!==e||t)return;const s=performance.now()-i.current;let r=performance.now(),o=0;const a=()=>{const e=performance.now(),t=e-s;i.current=t,e-r>=50&&(r=e,n(t)),o=requestAnimationFrame(a)};return a(),()=>cancelAnimationFrame(o)},[i,e,t]),r})(t,r,e);return(0,ze.jsx)(et,{$visible:i,children:(0,ze.jsx)(Je.Y,{elapsedMs:l,isPaused:r,isSoundEnabled:n,onPauseToggle:o,onSoundToggle:a,variant:"game"})})},Xe=({gameVisible:e=!0,headerVisible:t=!0,training:i=!1,onBackgroundShift:r,onLoadError:a,onReady:l})=>{const c=(0,s.useRef)(null),d=(0,s.useRef)(null),p=(0,s.useRef)(!1),h=(0,o.useNavigate)(),f=(0,n.useUnit)(Ne.Fn),u=(0,n.useUnit)(Qe.c),m=(0,n.useUnit)(Ue.Q9),x=(0,n.useUnit)(Ue.Pm),{mainGameClose:g,mainGameRepeat:b}=(0,Ye.A)(),[y,v]=(0,s.useState)(0),[w,k]=(0,s.useState)("idle"),[j,M]=(0,s.useState)(!1),[R,z]=(0,s.useState)(!1),S=(0,s.useRef)(0),C=(0,s.useCallback)(()=>{d.current?.setState("gameover")},[]),A=(0,s.useCallback)(()=>{h("/start")},[h]),{activeSession:F,endPending:D,error:_,recordTap:$,startSession:T,togglePause:L}=we({elapsedRef:S,enabled:!i,gameState:w,onSessionBlocked:C,onStartError:A,score:y});(0,s.useEffect)(()=>{i||0!==F?.attempts_balance_after||(p.current=!0)},[F,i]),(0,s.useEffect)(()=>{if(!c.current||d.current)return;const e=new ue(c.current);d.current=e,e.onScore(e=>{v(e),M(!0),setTimeout(()=>M(!1),150)}),e.onTapOutcome(e=>{$(e)}),e.onState(e=>{k(e),"playing"===e&&T(),"playing"!==e&&z(!1)}),e.onCameraOffset(t=>{const i=25*e.config.blockHeight,s=Math.min(1,t/i);r?.(350*s)});let t=!1;return e.init(u).then(()=>{t||(e.prepareIntroDrop(),requestAnimationFrame(()=>{requestAnimationFrame(()=>{t||l?.()})}))}).catch(e=>{t||a?.(e)}),()=>{t=!0,e.destroy(),d.current=null}},[r,a,l,$,T,u]),(0,s.useEffect)(()=>{e&&d.current?.playIntroDrop()},[e]),(0,s.useEffect)(()=>{const e=()=>{if("hidden"!==document.visibilityState)return;const e=d.current;e&&"playing"===e.state&&!e.paused&&(e.pause(),z(!0),!i&&F&&L(!1,t=>{t&&e.pause(),z(!0)}))};return document.addEventListener("visibilitychange",e),()=>document.removeEventListener("visibilitychange",e)},[F,L,i]),(0,s.useEffect)(()=>{const t=t=>{if("Space"!==t.code||t.repeat)return;const i=t.target,s=i?.closest("button, a, input, textarea, select");if(s?.checkVisibility())return;t.preventDefault();const r=d.current;r&&e&&"gameover"!==r.state&&r.queueTap()};return window.addEventListener("keydown",t),()=>window.removeEventListener("keydown",t)},[e]);const P=()=>{const e=d.current;if(e&&"playing"===e.state)return i||!F?(e.paused?e.resume():e.pause(),void z(e.paused)):void L(e.paused,t=>{t?e.pause():e.resume(),z(t)})},O=()=>{g(),h("/start")};return(0,ze.jsxs)(ze.Fragment,{children:[(0,ze.jsx)(Ie,{}),(0,ze.jsxs)(Ke,{className:"game-page-root",onPointerDown:e=>{e.target.closest(".tp-dfwv")||"touch"===e.pointerType&&e.clientY>window.innerHeight-40||d.current?.queueTap()},children:[(0,ze.jsx)(Ze,{ref:c}),(0,ze.jsx)(Ve,{elapsedRef:S,gameState:w,headerVisible:t,isPaused:R,isSoundEnabled:f,onPauseToggle:P,onSoundToggle:()=>{(0,Ne.QF)()}}),(0,ze.jsxs)(tt,{children:[(0,ze.jsx)(nt,{$bump:j,children:y}),(0,ze.jsx)(ot,{$hidden:"playing"===w,children:D?"":!i&&_ instanceof xe.hD?Ge(_.code):"idle"===w?"Жми по экрану, \n чтобы ставить этажи":""})]}),R&&(0,ze.jsx)(it,{onPointerDown:e=>e.stopPropagation(),children:(0,ze.jsx)(st,{"aria-label":"Продолжить игру",onClick:P,type:"button",children:(0,ze.jsx)(Me.I,{"aria-hidden":"true",height:80,name:"play",width:80})})}),"gameover"===w&&(0,ze.jsx)(Se,{floors:y,training:i,onExit:O,onRestart:()=>{b();const e=d.current;e&&e.reset()},onConfirm:()=>{O(),p.current&&m&&(0,qe.cO)(m.attempts,m.bet_progress,x?1:0)&&(0,We.sd)(He.MP,{mode:"spent-all"})}})]})]})},Ge=e=>{switch(e){case"no attempts":return"Попытки закончились";case"daily limit reached":return"Дневной лимит игр исчерпан";case"session revoked":return"Игра продолжена в другой вкладке";case"session not found":return"Игровая сессия завершена";default:return"Не удалось связаться с сервером"}},Ke=r.default.div(["background:transparent;"]),Ze=r.default.div(["position:absolute;inset:0;"]),et=r.default.div(["position:absolute;z-index:100;inset:0;opacity:",";transform:translateY(",");transition:opacity 220ms ease,transform 420ms cubic-bezier(0.22,1,0.36,1);pointer-events:",";"],({$visible:e})=>e?1:0,({$visible:e})=>e?"0":"-100%",({$visible:e})=>e?"auto":"none"),tt=r.default.div(["display:flex;align-items:center;padding-top:120px;flex-direction:column;position:absolute;inset:0;pointer-events:none;z-index:10;"]),it=r.default.div(["display:flex;justify-content:center;align-items:center;position:absolute;z-index:101;inset:0;background:rgb(3 14 25 / 70%);backdrop-filter:blur(12px);"]),st=r.default.button(["display:flex;justify-content:center;align-items:center;width:80px;height:80px;padding:0;border:0;background:transparent;color:#fff;cursor:pointer;"]),rt=(0,r.keyframes)(["0%{transform:scale(1);}50%{transform:scale(1.18);}100%{transform:scale(1);}"]),nt=r.default.div(["color:#fff;text-align:center;font-family:",";font-feature-settings:'liga' off,'clig' off;font-size:100px;font-style:normal;font-weight:900;line-height:96px;text-transform:uppercase;",""],Re.pQ.onyTrack,({$bump:e})=>e&&(0,r.css)(["animation:"," 150ms ease-out;"],rt)),ot=r.default.div(["margin-top:16px;font-size:20px;font-family:",";font-weight:500;line-height:24px;font-feature-settings:'liga' off,'clig' off;color:#fff;text-align:center;white-space:pre-line;opacity:",";transition:opacity 240ms ease;pointer-events:none;"],Re.pQ.onyOne,({$hidden:e})=>e?"0":"1")},150:function(e,t,i){i.d(t,{IA:function(){return p},MJ:function(){return d},Mr:function(){return c},jv:function(){return h},u3:function(){return l},wA:function(){return a}});let s=[],r=!1,n=null,o=null;const a=()=>{s=[],o=(new Date).toISOString()},l=()=>r,c=e=>{if(r=e,r){if("undefined"!=typeof PerformanceObserver)try{n=new PerformanceObserver(e=>{for(const t of e.getEntries())d("browser_long_task",{durationMs:Number(t.duration.toFixed(2)),name:t.name,startTimeMs:Number(t.startTime.toFixed(2))})}),n.observe({type:"longtask",buffered:!1})}catch{n=null}}else n?.disconnect(),n=null,s=[],o=null},d=(e,t={})=>{r&&(s.push({atMs:Math.round(performance.now()),data:t,type:e}),s.length>2e3&&s.shift())},p=()=>s.length,h=()=>{if(0===s.length)return!1;const e=(new Date).toISOString().replace(/[:.]/g,"-"),t=new Blob([JSON.stringify({metadata:{devicePixelRatio:window.devicePixelRatio,language:navigator.language,platform:navigator.platform,screen:`${window.screen.width}x${window.screen.height}`,userAgent:navigator.userAgent,viewport:`${window.innerWidth}x${window.innerHeight}`},startedAt:o,entries:s},null,2)],{type:"application/json"}),i=URL.createObjectURL(t),r=document.createElement("a");return r.href=i,r.download=`tower-perf-${e}.json`,document.body.appendChild(r),r.click(),r.remove(),window.setTimeout(()=>URL.revokeObjectURL(i),1e3),!0}},7568:function(e,t,i){i.d(t,{Y:function(){return k}});var s=i(7871),r=i(7795),n=i(3040),o=i(4477),a=i(9082),l=i(5887),c=i(3558),d=i(6918),p=i(4848);const h=({attempts:e,serverTime:t})=>{const{mainNotifyMakeBet:i}=(0,l.A)(),s=(0,r.Yu)(e.refreshes_at,t),o=(0,c.zt)(s),d=(0,a.q)(e.used_today,0,10),h=(0,a.q)(Math.min(e.balance,e.remaining_today),0,10-d);return(0,p.jsxs)(f,{onClick:()=>{i(),(0,n.qB)()},type:"button",children:[(0,p.jsx)(u,{$available:h,$used:d,"aria-hidden":"true",focusable:"false"}),(0,p.jsxs)(m,{children:[(0,p.jsx)(x,{children:o}),(0,p.jsx)(g,{children:"до обновления"})]})]})},f=s.default.button(["display:flex;align-items:center;gap:8px;height:48px;padding:8px 16px 8px 8px;border:0;border-radius:24px;background:var(--transparent-light-15,rgb(255 255 255 / 15%));cursor:pointer;pointer-events:auto;"]),u=(0,s.default)(o.A)(["flex:0 0 32px;width:32px;height:32px;",""],({$available:e,$used:t})=>(({$available:e,$used:t})=>Array.from({length:10},(i,r)=>{const n=r<t,o=r<t+e,a=n?"#fff":o?"#FAF948":"#fff",l=n?.75:o?1:.2;return(0,s.css)(["path[data-petal='","']{fill:",";fill-opacity:",";}"],r+1,a,l)}))({$available:e,$used:t})),m=s.default.div(["display:flex;align-items:flex-start;flex-direction:column;"]),x=s.default.span(["color:var(--text-primary,#fff);font-family:",";font-size:16px;font-weight:500;line-height:20px;font-variant-numeric:lining-nums tabular-nums;"],d.pQ.onyOne),g=s.default.span(["color:var(--text-primary,#fff);font-family:",";font-size:12px;font-weight:400;line-height:14px;font-feature-settings:'liga' off,'clig' off;"],d.pQ.onyOne);var b=i(5043),y=i(2006),v=i(669),w=i(7511);const k=e=>"start"===e.variant?(0,p.jsx)(A,{attempts:e.attempts,serverTime:e.serverTime,totalFloors:e.totalFloors}):(0,p.jsx)(j,{...e}),j=({elapsedMs:e,isPaused:t,isSoundEnabled:i,onPauseToggle:s,onSoundToggle:r})=>(0,p.jsxs)(R,{onPointerDown:e=>e.stopPropagation(),children:[(0,p.jsxs)(z,{children:[(0,p.jsx)(S,{"aria-label":t?"Продолжить игру":"Поставить игру на паузу",onClick:s,type:"button",children:(0,p.jsx)(v.I,{"aria-hidden":"true",name:t?"play":"pause",size:24})}),(0,p.jsx)(S,{"aria-label":i?"Выключить звук":"Включить звук",onClick:r,type:"button",children:(0,p.jsx)(v.I,{"aria-hidden":"true",name:i?"sound-on":"sound-off",size:24})})]}),(0,p.jsx)(C,{children:(0,p.jsx)(w.z,{value:M(e)})})]}),M=e=>`${Math.floor(e/6e4).toString().padStart(2,"0")}:${Math.floor(e%6e4/1e3).toString().padStart(2,"0")}.${Math.floor(e%1e3/10).toString().padStart(2,"0")}`,R=s.default.header(["display:flex;justify-content:space-between;align-items:center;width:calc(100% - 32px);position:absolute;z-index:100;top:24px;left:50%;transform:translateX(-50%);"]),z=s.default.div(["display:flex;gap:8px;"]),S=s.default.button(["display:flex;justify-content:center;align-items:center;width:48px;height:48px;padding:8px;border:0;border-radius:50%;background:rgb(255 255 255 / 10%);color:#fff;cursor:pointer;backdrop-filter:blur(10px);"]),C=s.default.div(["display:flex;align-items:center;gap:8px;height:48px;padding:8px 16px;border-radius:48px;border:1px solid rgb(255 255 255 / 15%);background:rgb(255 255 255 / 5%);color:#fff;font-family:",";font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-size:16px;font-style:normal;font-weight:400;line-height:22px;text-align:center;"],d.pQ.onyOne),A=({attempts:e,serverTime:t,totalFloors:i})=>{const{mainInformation:s}=(0,l.A)();return(0,p.jsx)(F,{children:(0,p.jsxs)(D,{children:[(0,p.jsx)(h,{attempts:e,serverTime:t}),(0,p.jsxs)(_,{"aria-label":`Этажей за всё время: ${i}`,onClick:()=>{s(),(0,y.sd)(b.l)},type:"button",children:[(0,p.jsx)(v.I,{"aria-hidden":"true",name:"layer",size:24}),(0,p.jsx)($,{children:i})]})]})})},F=s.default.header(["height:120px;padding:16px;position:absolute;z-index:100;top:0;right:0;left:0;background:linear-gradient(180deg,#366a95 0%,rgb(133 181 221 / 0%) 100%);pointer-events:none;"]),D=s.default.div(["display:flex;justify-content:space-between;align-items:center;width:100%;"]),_=s.default.button(["display:flex;justify-content:center;align-items:center;gap:6px;height:48px;padding:8px 16px 8px 12px;border:0;border-radius:48px;background:var(--transparent-light-15,rgb(255 255 255 / 15%));backdrop-filter:blur(4px);cursor:pointer;pointer-events:auto;"]),$=s.default.span(["color:var(--text-primary,#fff);font-family:",";font-size:16px;font-weight:400;line-height:22px;"],d.pQ.onyOne)},5946:function(e,t,i){i.d(t,{YW:function(){return k},zB:function(){return C},lM:function(){return l}});var s=i(7871),r=i(669),n=i(7511),o=i(6918),a=i(4848);const l=({isLoading:e=!1,items:t})=>(0,a.jsxs)(a.Fragment,{children:[t.map(e=>(0,a.jsxs)(d,{children:[(0,a.jsx)(b,{children:e.date}),(0,a.jsx)(y,{value:e.duration}),(0,a.jsxs)(v,{children:[e.points,(0,a.jsx)(r.I,{"aria-hidden":"true",name:"layer",size:20})]})]},e.id)),e&&Array.from({length:7},(e,t)=>(0,a.jsx)(c,{},"skeleton-"+t))]}),c=()=>(0,a.jsxs)(p,{"aria-hidden":"true",children:[(0,a.jsx)(f,{}),(0,a.jsx)(u,{}),(0,a.jsxs)(m,{children:[(0,a.jsx)(x,{}),(0,a.jsx)(g,{})]})]}),d=s.default.article(["display:grid;align-items:center;column-gap:12px;min-height:48px;padding:4px 16px;grid-template-columns:minmax(0,1fr) max-content max-content;border-radius:16px;background:rgb(255 255 255 / 5%);"]),p=s.default.article(["display:grid;align-items:center;column-gap:12px;min-height:48px;padding:4px 16px;grid-template-columns:minmax(0,1fr) 48px max-content;border-radius:16px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),h=s.default.span(["display:block;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),f=(0,s.default)(h)(["width:100%;height:16px;"]),u=s.default.span(["width:48px;height:100%;"]),m=s.default.span(["display:flex;justify-content:flex-end;align-items:center;gap:4px;height:100%;"]),x=(0,s.default)(h)(["width:64px;height:16px;"]),g=(0,s.default)(h)(["width:20px;height:20px;"]),b=s.default.span(["overflow:hidden;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],o.pQ.onyOne),y=(0,s.default)(n.z)(["overflow:hidden;color:rgb(255 255 255 / 75%);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;text-align:right;white-space:nowrap;font-family:",";font-size:14px;font-weight:400;line-height:18px;"],o.pQ.onyOne),v=s.default.span(["display:flex;justify-content:flex-end;align-items:center;gap:2px;overflow:hidden;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],o.pQ.onyOne),w=new Intl.NumberFormat("ru-RU"),k=({items:e})=>(0,a.jsx)(a.Fragment,{children:e.map(e=>(0,a.jsxs)(j,{children:[(0,a.jsx)(M,{children:e.date}),(0,a.jsxs)(R,{children:[w.format(e.points),(0,a.jsx)(r.I,{"aria-hidden":"true",name:"freebet",size:20})]})]},e.id))}),j=s.default.article(["display:flex;align-items:center;min-height:48px;padding:4px 16px;border-radius:16px;background:rgb(255 255 255 / 5%);"]),M=s.default.span(["overflow:hidden;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],o.pQ.onyOne),R=s.default.span(["display:flex;align-items:center;gap:2px;margin-left:auto;color:#fff;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-family:",";font-size:14px;font-weight:400;line-height:20px;white-space:nowrap;"],o.pQ.onyOne);var z=i(5584),S=i(7791);const C=({onClose:e})=>(0,a.jsxs)(A,{role:"status",children:[(0,a.jsx)(F,{children:"Все заработанные тобой фрибеты будут начислены автоматически на баланс аккаунта до 12:00 мск следующего дня"}),(0,a.jsx)(D,{alt:"","aria-hidden":"true",src:S}),(0,a.jsx)(_,{"aria-label":"Закрыть уведомление",onClick:e,type:"button",children:(0,a.jsx)(z.A,{"aria-hidden":"true"})})]}),A=s.default.aside(["display:flex;align-items:flex-start;gap:4px;flex:none;width:100%;min-height:64px;margin-top:24px;padding:8px 8px 0 16px;overflow:hidden;border-radius:16px;background:rgb(255 255 255 / 10%);"]),F=s.default.p(["flex:1;min-width:0;margin:0;padding:4px 0 12px;color:#fff;font-feature-settings:'liga' off,'clig' off;font-family:",";font-size:12px;font-weight:400;line-height:14px;"],o.pQ.onyOne),D=s.default.img(["align-self:flex-end;flex:0 0 93px;width:93px;height:auto;object-fit:contain;pointer-events:none;"]),_=s.default.button(["display:flex;flex:0 0 20px;justify-content:center;align-items:center;width:20px;height:20px;padding:0;border:0;background:transparent;cursor:pointer;svg{width:20px;height:20px;}"])},9727:function(e,t,i){i.d(t,{V:function(){return f}});var s=i(1208),r=i(7871),n=i(38);const o=[{icon:"home",label:"Игра",to:"/start"},{icon:"help",label:"Об акции",to:"/prize"},{icon:"history",label:"История",to:"/history"},{icon:"cup",label:"Рейтинг",to:"/rating"}],a=[{icon:"clapperboard",label:"Итоги",to:"/results"},{icon:"help",label:"Об акции",to:"/prize"},{icon:"history",label:"История",to:"/history"},{icon:"cup",label:"Победители",to:"/winners"}];var l=i(7795),c=i(669),d=i(5887),p=i(6918),h=i(4848);const f=()=>{const{pathname:e}=(0,s.useLocation)(),t=(0,n.useUnit)(l.Q9),i=(0,d.A)(),r=t?.experience.navigation_variant??"game",p=(f=r,g=t?.participation_status,("results"===f?a:o).filter(e=>"/history"!==e.to||"not_joined"!==g));var f,g;const b="/game"!==e&&"awaiting_results"!==t?.experience.phase;return(0,h.jsx)(u,{$visible:b,"aria-hidden":!b,"aria-label":"Основная навигация",children:p.map(({icon:t,label:s,to:r})=>{const n=e===r||"/start"===r&&"/game"===e||"/winners"===r&&"/rating"===e;return(0,h.jsx)(m,{"aria-current":n?"page":void 0,"aria-label":s,className:n?"is-active":void 0,onClick:()=>(t=>{const s={"/start:/history":i.mainHistory,"/start:/prize":i.mainRules,"/start:/rating":i.mainEndResultsRating,"/history:/start":i.historyMain,"/history:/prize":i.historyRules,"/history:/rating":i.historyEndResultsRating,"/history:/results":i.historyEndResults,"/history:/winners":i.historyEndResultsRating,"/rating:/start":i.endResultsRatingMain,"/rating:/history":i.endResultsRatingHistory,"/rating:/prize":i.endResultsRatingRules,"/results:/history":i.endResultsHistory,"/results:/winners":i.endResultsRating,"/results:/prize":i.endResultsRules,"/winners:/results":i.endResultsRatingEndResults,"/winners:/history":i.endResultsRatingHistory,"/winners:/prize":i.endResultsRatingRules};s[`${e}:${t}`]?.()})(r),to:r,children:(0,h.jsxs)(h.Fragment,{children:[(0,h.jsx)(c.I,{"aria-hidden":"true",name:t,size:24}),(0,h.jsx)(x,{$isActive:n,children:s})]})},r)})})},u=r.default.nav(["display:flex;justify-content:center;align-items:center;padding:4px;position:absolute;z-index:100;bottom:var(--navigation-bottom);left:50%;border-radius:40px;background:rgb(255 255 255 / 5%);backdrop-filter:blur(12px);opacity:",";transform:translate(-50%,",");visibility:",";transition:opacity var(--bottom-controls-opacity-duration) ease,transform var(--bottom-controls-transform-duration) var(--bottom-controls-exit-easing),visibility 0s linear ",";pointer-events:",";"],({$visible:e})=>e?1:0,({$visible:e})=>e?"0":"120px",({$visible:e})=>e?"visible":"hidden",({$visible:e})=>e?"0s":"var(--bottom-controls-transform-duration)",({$visible:e})=>e?"auto":"none"),m=(0,r.default)(s.NavLink)(["display:flex;justify-content:center;align-items:center;padding:12px;position:relative;border-radius:24px;background:transparent;color:rgb(255 255 255 / 75%);text-decoration:none;transition:color 200ms ease,background-color 200ms ease,padding 200ms ease;svg path{fill:currentcolor;}&.is-active{padding:12px 16px 12px 12px;background:rgb(255 255 255 / 10%);color:#fff;}"]),x=r.default.span(["display:block;margin-left:",";max-width:",";overflow:hidden;color:inherit;font-family:",";font-size:14px;font-weight:400;line-height:20px;white-space:nowrap;letter-spacing:0;opacity:",";transition:max-width 200ms ease,margin-left 200ms ease,opacity 150ms ease;"],({$isActive:e})=>e?"8px":"0",({$isActive:e})=>e?"100px":"0",p.pQ.onyOne,({$isActive:e})=>e?1:0)},9856:function(e,t,i){i.d(t,{d_:function(){return c},op:function(){return w},Or:function(){return H}});var s=i(2427),r=i(7871),n=i(8488),o=i(669),a=i(6918),l=i(4848);const c=999,d=({url:e,background:t})=>e?(0,l.jsx)(g,{alt:"",$background:t,src:e}):(0,l.jsx)(b,{$background:t,children:(0,l.jsx)(n.A,{"aria-hidden":"true"})}),p=({isCurrent:e=!1,showTime:t,user:i})=>{return(0,l.jsxs)(x,{$isCurrent:e,$isOverflow:e&&i.place>c,children:[(0,l.jsx)(h,{children:(s=i.place,s>c?`${c}+`:String(s))}),(0,l.jsxs)(f,{children:[(0,l.jsx)(d,{background:i.avatarBackground,url:i.avatarUrl}),(0,l.jsx)(y,{children:i.name})]}),(0,l.jsxs)(u,{children:[t&&(0,l.jsx)(m,{children:i.time}),(0,l.jsxs)(v,{children:[i.balance,(0,l.jsx)(o.I,{"aria-hidden":"true",name:"layer",size:16})]})]})]});var s},h=r.default.span(["width:32px;color:#fff;text-align:center;font-feature-settings:'liga' off,'clig' off;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],a.pQ.onyOne),f=r.default.div(["display:flex;align-items:center;gap:12px;position:absolute;top:50%;left:32px;transform:translateY(-50%);"]),u=r.default.div(["display:flex;align-items:center;gap:12px;margin-left:auto;"]),m=r.default.span(["color:rgb(255 255 255 / 75%);text-align:right;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],a.pQ.onyOne),x=r.default.article(["display:flex;align-items:center;justify-content:space-between;width:",";min-height:40px;margin-left:",";padding:",";position:relative;border-radius:",";background:",";","{left:",";}"],({$isCurrent:e})=>e?"calc(100% + 16px)":"100%",({$isCurrent:e})=>e?"-8px":"0",({$isCurrent:e})=>e?"0 8px":"0",({$isCurrent:e})=>e?"12px":"0",({$isCurrent:e})=>e?"var(--opacity-light-5, rgba(255, 255, 255, 0.05))":"transparent",f,({$isCurrent:e,$isOverflow:t})=>t?"44px":e?"40px":"32px"),g=r.default.img(["width:32px;height:32px;border:0.8px solid #fff;border-radius:8px;object-fit:cover;background:",";"],({$background:e})=>e??"transparent"),b=r.default.span(["display:flex;flex:0 0 32px;justify-content:center;align-items:center;width:32px;height:32px;border-radius:8px;background:",";svg{width:16px;height:16px;}"],({$background:e})=>e??"#606266"),y=r.default.span(["overflow:hidden;max-width:150px;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],a.pQ.onyOne),v=r.default.span(["display:flex;align-items:center;gap:4px;margin-left:auto;white-space:nowrap;color:#fff;text-align:right;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],a.pQ.onyOne),w=({currentUserId:e,isLoading:t,sentinelRef:i,showTime:r,users:n})=>{const o=t,a=(0,s.useRef)(null);return(0,s.useEffect)(()=>{a.current&&(a.current.scrollTop=0)},[r]),(0,l.jsxs)(j,{"aria-busy":t,children:[(0,l.jsxs)(M,{children:[(0,l.jsxs)(R,{children:[(0,l.jsx)("span",{children:"№"}),(0,l.jsx)("span",{children:"Игрок"})]}),(0,l.jsx)("span",{children:r?"Результат дня":"Баланс"})]}),(0,l.jsxs)(z,{ref:a,children:[n.map(t=>(0,l.jsx)(p,{isCurrent:t.userId===e,showTime:r,user:t},t.userId)),o&&Array.from({length:6},(e,t)=>(0,l.jsx)(k,{},`skeleton-${t}`)),(0,l.jsx)(L,{ref:i})]})]})},k=()=>(0,l.jsxs)(S,{"aria-hidden":"true",children:[(0,l.jsx)(C,{}),(0,l.jsxs)(A,{children:[(0,l.jsx)(F,{}),(0,l.jsx)(D,{})]}),(0,l.jsxs)(_,{children:[(0,l.jsx)($,{}),(0,l.jsx)(T,{})]})]}),j=r.default.section(["display:flex;flex:1;gap:16px;width:100%;min-height:0;margin-top:16px;flex-direction:column;"]),M=r.default.div(["display:flex;opacity:0.6;justify-content:space-between;align-items:center;height:20px;color:rgb(255 255 255 / 75%);font-feature-settings:'liga' off,'clig' off;font-family:",";font-size:14px;font-weight:400;line-height:20px;"],a.pQ.onyOne),R=r.default.div(["display:flex;flex:1;gap:8px;span:first-child{width:24px;}"]),z=r.default.div(["display:flex;gap:8px;width:calc(100% + 16px);min-height:0;padding:0 8px 120px;margin-left:-8px;flex-direction:column;overflow:hidden auto;overscroll-behavior:contain;scrollbar-width:none;&::-webkit-scrollbar{display:none;}"]),S=r.default.div(["display:flex;flex:0 0 40px;align-items:center;gap:12px;width:100%;min-height:40px;padding:4px 0;backdrop-filter:blur(8px);"]),C=r.default.span(["flex:0 0 28px;width:28px;height:20px;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),A=r.default.div(["display:flex;flex:1 1 0;align-items:center;gap:8px;min-width:0;"]),F=r.default.span(["flex:0 0 32px;width:32px;height:32px;border-radius:8px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),D=r.default.span(["flex:0 0 80px;width:80px;height:16px;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),_=r.default.div(["display:flex;flex:0 0 auto;align-items:center;gap:4px;margin-left:auto;"]),$=r.default.span(["flex:0 0 64px;width:64px;height:16px;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),T=r.default.span(["flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),L=r.default.div(["flex:0 0 1px;height:1px;"]),P=({date:e,description:t,image:i,place:s,title:r})=>(0,l.jsxs)(O,{children:[(0,l.jsxs)(E,{children:[(0,l.jsx)(B,{children:s}),e&&(0,l.jsx)(I,{children:e})]}),(0,l.jsxs)(J,{children:[(0,l.jsx)(N,{children:r}),t&&(0,l.jsx)(Y,{children:t})]}),(0,l.jsx)(Q,{children:(0,l.jsx)(U,{alt:"",src:i})})]}),O=r.default.article(["display:flex;flex:0 0 100%;align-items:center;gap:8px;width:100%;min-height:176px;padding:16px;border:1px solid rgb(255 255 255 / 10%);border-radius:24px;position:relative;overflow:hidden;background:rgb(255 255 255 / 5%);scroll-snap-align:start;"]),E=r.default.div(["display:flex;gap:4px;position:absolute;z-index:2;top:-1px;left:22px;"]),B=r.default.span(["display:flex;align-items:center;height:24px;padding:0 12px;border-radius:0 0 16px 16px;background:rgb(255 255 255 / 10%);color:#fff;font-family:",";font-size:12px;line-height:14px;white-space:nowrap;backdrop-filter:blur(8px);"],a.pQ.onyOne),I=(0,r.default)(B)(["background:#f8f700;color:#090a0a;font-feature-settings:'liga' off,'clig' off;"]),J=r.default.div(["display:flex;flex:1 1 0;justify-content:flex-end;gap:8px;min-width:0;align-self:stretch;flex-direction:column;"]),N=r.default.h3(["margin:0;color:#fff;font-family:",";font-size:16px;font-weight:500;line-height:20px;white-space:nowrap;"],a.pQ.onyOne),Y=r.default.p(["margin:0;color:rgb(255 255 255 / 75%);font-family:",";font-size:14px;line-height:20px;"],a.pQ.onyOne),Q=r.default.div(["display:flex;flex:0 0 144px;justify-content:center;align-items:center;width:144px;height:144px;overflow:hidden;"]),U=r.default.img(["display:block;width:100%;height:100%;object-fit:contain;"]),H=({prizes:e})=>{const t=(0,s.useRef)(null),[i,r]=(0,s.useState)(0);(0,s.useEffect)(()=>{t.current?.scrollTo({left:0}),r(0)},[e]);const n=e=>{const i=t.current,s=i?.firstElementChild;i&&s&&i.scrollBy({behavior:"smooth",left:e*(s.offsetWidth+8)})};return(0,l.jsxs)(q,{children:[(0,l.jsx)(W,{onScroll:()=>{const i=t.current,s=i?.firstElementChild;i&&s&&r(Math.min(e.length-1,Math.max(0,Math.round(i.scrollLeft/(s.offsetWidth+8)))))},ref:t,children:e.map(e=>(0,l.jsx)(P,{...e},`${e.place}-${e.title}`))}),i>0&&(0,l.jsx)(V,{$direction:"previous","aria-label":"Предыдущий приз",onClick:()=>n(-1),type:"button",children:(0,l.jsx)(o.I,{"aria-hidden":"true",name:"chevron-right-small",size:24})}),i<e.length-1&&(0,l.jsx)(V,{$direction:"next","aria-label":"Следующий приз",onClick:()=>n(1),type:"button",children:(0,l.jsx)(o.I,{"aria-hidden":"true",name:"chevron-right-small",size:24})})]})},q=r.default.div(["width:calc(100% + 32px);margin-top:16px;margin-right:-16px;margin-left:-16px;position:relative;"]),W=r.default.div(["display:flex;column-gap:8px;padding:0 16px;overflow-x:auto;scroll-padding-inline:16px;scroll-snap-type:x mandatory;scrollbar-width:none;&::-webkit-scrollbar{display:none;}"]),V=r.default.button(["display:flex;flex:0 0 32px;justify-content:center;align-items:center;width:32px;height:32px;padding:8px;border-radius:40px;background:rgb(255 255 255 / 10%);backdrop-filter:blur(10px);border:none;outline:none;cursor:pointer;position:absolute;top:50%;"," transform:translateY(-50%);svg{display:block;flex:none;width:24px;height:24px;}"," &:active{transform:translateY(-50%) scale(0.96);}"],({$direction:e})=>("previous"===e?"left":"right")+": 4px;",({$direction:e})=>"previous"===e&&"svg { transform: rotate(180deg); }")}}]);
+"use strict";
+(self.webpackChunksirena_tower_game = self.webpackChunksirena_tower_game || []).push([
+  [340], {
+    3792: function (e, t, i) {
+      i.d(t, {
+        U: function () {
+          return Xe
+        }
+      });
+      var s = i(2427),
+        r = i(7871),
+        n = i(38),
+        o = i(1208),
+        a = i(4755),
+        l = i(3872),
+        c = i(5307),
+        d = i(5804),
+        p = i(8383),
+        h = i(5723);
+
+      function f(e) {
+        const t = function () {
+            const e = navigator.userAgent;
+            return /Android/i.test(e) && !/Firefox/i.test(e)
+          }(),
+          i = new a.Scene;
+        i.fog = new a.Fog(3809134, 30, 80);
+        const s = e.clientWidth || window.innerWidth,
+          r = e.clientHeight || window.innerHeight,
+          n = 10,
+          o = s / r,
+          l = new a.OrthographicCamera(-10 * o / 2, n * o / 2, 5, -5, .1, 200);
+        l.position.set(10, 11, 10), l.lookAt(0, 0, 0);
+        const f = new a.WebGLRenderer({
+            alpha: !0,
+            antialias: !0,
+            powerPreference: t ? "default" : "high-performance"
+          }),
+          u = (window.matchMedia("(pointer: coarse)").matches, t ? 1.75 : 2),
+          m = Math.min(window.devicePixelRatio, u);
+        f.setClearColor(0, 0), f.setPixelRatio(m), f.setSize(s, r), f.shadowMap.enabled = !t, f.shadowMap.type = a.PCFShadowMap, f.toneMapping = a.ACESFilmicToneMapping, f.toneMappingExposure = 1.05, e.appendChild(f.domElement);
+        const x = new a.HemisphereLight(16772859, 3809134, .55);
+        i.add(x);
+        const g = new a.DirectionalLight(16774112, 1.6);
+        g.position.set(8, 18, 6), g.castShadow = !0, g.shadow.mapSize.set(2048, 2048), g.shadow.camera.near = 1, g.shadow.camera.far = 60, g.shadow.camera.left = -12, g.shadow.camera.right = 12, g.shadow.camera.top = 16, g.shadow.camera.bottom = -12, g.shadow.bias = -5e-4, g.shadow.normalBias = .02, i.add(g);
+        const b = new a.DirectionalLight(9334271, .6);
+        b.position.set(-6, 4, -8), i.add(b);
+        const y = new c.s(f);
+        y.setPixelRatio(m), y.setSize(s, r), y.addPass(new d.A(i, l));
+        const v = new p.C(new a.Vector2(s, r), .55, .7, 1);
+        y.addPass(v), y.addPass(new h.X);
+        const w = new ResizeObserver(e => {
+          const t = e[0];
+          if (!t) return;
+          const {
+            width: i,
+            height: s
+          } = t.contentRect;
+          if (0 === i || 0 === s) return;
+          const r = i / s;
+          l.left = -10 * r / 2, l.right = n * r / 2, l.top = 5, l.bottom = -5, l.updateProjectionMatrix(), f.setSize(i, s), f.setPixelRatio(m), y.setPixelRatio(m), y.setSize(i, s), v.resolution.set(i, s)
+        });
+        w.observe(e);
+        return {
+          scene: i,
+          camera: l,
+          renderer: f,
+          composer: y,
+          bloom: v,
+          keyLight: g,
+          ambient: x,
+          dispose: () => {
+            w.disconnect(), f.forceContextLoss(), f.dispose();
+            const e = f.domElement;
+            e.parentElement?.removeChild(e)
+          }
+        }
+      }
+      var u = i(150);
+      const m = ["#ff7a5a", "#ffd166", "#06d6a0", "#4cc9f0", "#b14aed", "#ff5ea8", "#84d36f", "#f48c06", "#ef476f", "#118ab2"];
+
+      function x(e) {
+        const t = new a.Color(m[e % m.length]),
+          i = {
+            h: 0,
+            s: 0,
+            l: 0
+          };
+        return t.getHSL(i), i.h = (i.h + .013 * e) % 1, t.setHSL(i.h, i.s, i.l), t
+      }
+      const g = new Map,
+        b = new Map,
+        y = new Map,
+        v = new Map;
+
+      function w(e, t, i, s) {
+        const r = function (e, t, i, s) {
+          return `${e.toFixed(3)}|${t.toFixed(3)}|${i.toFixed(3)}|${function(e){return`${e.uMin.toFixed(4)}|${e.uMax.toFixed(4)}|${e.vMin.toFixed(4)}|${e.vMax.toFixed(4)}`}(s)}`
+        }(e, t, i, s);
+        let n = b.get(r);
+        if (!n) {
+          if (n = function (e, t, i, s) {
+              const r = new a.BoxGeometry(e, t, i),
+                n = r.groups.find(e => 2 === e.materialIndex),
+                o = r.getIndex(),
+                l = r.getAttribute("uv");
+              if (!n || !o) return r;
+              const c = new Set;
+              for (let e = n.start; e < n.start + n.count; e++) {
+                const t = o.getX(e);
+                if (c.has(t)) continue;
+                c.add(t);
+                const i = l.getX(t),
+                  r = l.getY(t);
+                l.setXY(t, a.MathUtils.lerp(s.uMin, s.uMax, i), a.MathUtils.lerp(s.vMin, s.vMax, r))
+              }
+              return l.needsUpdate = !0, r
+            }(e, t, i, s), b.size >= 256) {
+            const e = b.keys().next().value;
+            e && (b.get(e)?.dispose(), b.delete(e))
+          }
+          b.set(r, n)
+        }
+        return n
+      }
+
+      function k(e, t, i, s, r) {
+        const n = function (e) {
+          return `${e.topTextureUrl}|${e.leftColor}|${e.rightColor}`
+        }(s);
+        let o = y.get(n);
+        o || (o = [], y.set(n, o));
+        let l = o.pop();
+        return l || (l = D(e, t, i, function (e) {
+          let t = v.get(e);
+          return t || (t = new a.Color(e), v.set(e, t)), t
+        }(s.rightColor), s.topTextureUrl, s.leftColor, s.rightColor), l.castShadow = !0, l.receiveShadow = !0), l.geometry = w(e, t, i, r), _(l, 1), l.scale.set(1, 1, 1), l.position.set(0, 0, 0), l.quaternion.set(0, 0, 0, 1), {
+          mesh: l,
+          poolKey: n
+        }
+      }
+
+      function j(e, t) {
+        e.removeFromParent(), e.scale.set(1, 1, 1);
+        const i = Array.isArray(e.material) ? e.material : [e.material];
+        for (const e of i) e.transparent = !0, e.opacity = 1;
+        let s = y.get(t);
+        s || (s = [], y.set(t, s)), s.push(e)
+      }
+      const M = {
+        uMin: 0,
+        uMax: 1,
+        vMin: 0,
+        vMax: 1
+      };
+      const R = new Map,
+        z = new a.TextureLoader;
+
+      function S(e) {
+        return e.colorSpace = a.SRGBColorSpace, e.anisotropy = 8, e
+      }
+      async function C(e) {
+        await Promise.all(e.map(async e => {
+          if (R.has(e)) return;
+          const t = S(await z.loadAsync(e));
+          R.set(e, t)
+        }))
+      }
+
+      function A(e) {
+        const t = R.get(e);
+        if (t) return t;
+        const i = S(z.load(e));
+        return R.set(e, i), i
+      }
+
+      function F(e, t = {}) {
+        return new a.MeshStandardMaterial({
+          color: e,
+          roughness: .45,
+          metalness: .05,
+          emissive: e.clone().multiplyScalar(t.emissive ?? .08)
+        })
+      }
+
+      function D(e, t, i, s, r, n = "#c2135c", o = "#ff4392", l = M) {
+        const c = F(new a.Color(n)),
+          d = F(new a.Color(o)),
+          p = F(s),
+          h = [d, d, new a.MeshBasicMaterial({
+            map: A(r)
+          }), p, c, c],
+          f = 0 === l.uMin && 1 === l.uMax && 0 === l.vMin && 1 === l.vMax ? function (e, t, i) {
+            const s = `${e.toFixed(3)}|${t.toFixed(3)}|${i.toFixed(3)}`;
+            let r = g.get(s);
+            return r || (r = new a.BoxGeometry(e, t, i), g.set(s, r)), r
+          }(e, t, i) : w(e, t, i, l),
+          u = new a.Mesh(f, h);
+        return u.castShadow = !0, u.receiveShadow = !0, u
+      }
+
+      function _(e, t = 1) {
+        const i = Array.isArray(e.material) ? e.material : [e.material];
+        for (const e of i) e.transparent = !0, e.opacity = t
+      }
+
+      function $(e) {
+        !0 === e.geometry.userData.disposeWithBlockMesh && e.geometry.dispose()
+      }
+
+      function T(e) {
+        if (Array.isArray(e.material)) {
+          const t = new Set;
+          for (const i of e.material) t.has(i) || (t.add(i), i.dispose())
+        } else e.material.dispose()
+      }
+      var L = i(3684);
+      const P = "game-start",
+        O = "game-end",
+        E = "block-clap",
+        B = "game-background",
+        I = 1,
+        J = .5,
+        N = .5,
+        Y = .8,
+        Q = .35;
+      let U = null,
+        H = null;
+      const q = (e, t) => `${e.replace(/\/$/,"")}/assets/sound/${t}`,
+        W = (e, t, i = {}) => new Promise(s => {
+          const r = n => {
+            L.J.register(e, {
+              src: [t],
+              preload: !0,
+              html5: n,
+              ...i,
+              onload: () => s(),
+              onloaderror: () => {
+                n ? s() : r(!0)
+              }
+            })
+          };
+          r(!1)
+        }),
+        V = e => (U && H === e || (H = e, U = Promise.all([W(P, q(e, "start.mp3"), {
+          volume: J
+        }), W(O, q(e, "end.mp3"), {
+          volume: N
+        }), W(E, q(e, "clap.mp3"), {
+          volume: Y
+        }), W(B, q(e, "background.mp3"), {
+          loop: !0,
+          volume: Q
+        })]).then(() => {})), U),
+        X = {
+          playBackground() {
+            L.J.isPlaying(B) || L.J.play(B)
+          },
+          applyVolumes() {
+            L.J.setGlobalVolume(I), L.J.setVolume(P, J), L.J.setVolume(O, N), L.J.setVolume(E, Y), L.J.setVolume(B, Q)
+          },
+          previewStart() {
+            L.J.stop(P), L.J.play(P)
+          },
+          previewEnd() {
+            L.J.stop(O), L.J.play(O)
+          },
+          previewClap() {
+            L.J.play(E)
+          },
+          toggleBackground() {
+            L.J.stop(B), L.J.play(B)
+          },
+          start() {
+            L.J.stop(O), L.J.play(P), this.playBackground()
+          },
+          end() {
+            L.J.stop(B), L.J.play(O)
+          },
+          clap() {
+            L.J.play(E)
+          },
+          pause() {
+            L.J.pause(B)
+          },
+          resume() {
+            L.J.play(B)
+          },
+          stop() {
+            L.J.stop(P), L.J.stop(O), L.J.stop(B)
+          }
+        };
+      var G = i(4779),
+        K = i(8255),
+        Z = i(5011),
+        ee = i(1627),
+        te = i(6971),
+        ie = i(6665),
+        se = i(7375),
+        re = i(960),
+        ne = i(5796),
+        oe = i(520),
+        ae = i(6224),
+        le = i(1936),
+        ce = i(8482),
+        de = i(4916);
+      const pe = [{
+        texture: Z,
+        left: "#c2135c",
+        right: "#ff4392"
+      }, {
+        texture: G,
+        left: "#1e4acc",
+        right: "#4876ff"
+      }, {
+        texture: K,
+        left: "#65b23c",
+        right: "#aeff82"
+      }, {
+        texture: ee,
+        left: "#c4c400",
+        right: "#fffe3d"
+      }, {
+        texture: te,
+        left: "#999999",
+        right: "#e6e6e6"
+      }, {
+        texture: ie,
+        left: "#5b5b5b",
+        right: "#a3a3a3"
+      }, {
+        texture: se,
+        left: "#363636",
+        right: "#464646"
+      }, {
+        texture: oe,
+        left: "#c2135c",
+        right: "#ff4392"
+      }, {
+        texture: re,
+        left: "#1e4acc",
+        right: "#4876ff"
+      }, {
+        texture: ne,
+        left: "#65b23c",
+        right: "#aeff82"
+      }, {
+        texture: ae,
+        left: "#c4c400",
+        right: "#fffe3d"
+      }, {
+        texture: le,
+        left: "#999999",
+        right: "#e6e6e6"
+      }, {
+        texture: ce,
+        left: "#5b5b5b",
+        right: "#a3a3a3"
+      }, {
+        texture: de,
+        left: "#363636",
+        right: "#464646"
+      }];
+
+      function he(e) {
+        return pe[e % pe.length]
+      }
+
+      function fe(e, t, i, s) {
+        if ("x" === t) {
+          const t = e.uMax - e.uMin;
+          return {
+            ...e,
+            uMin: e.uMin + t * i,
+            uMax: e.uMin + t * s
+          }
+        }
+        const r = e.vMax - e.vMin;
+        return {
+          ...e,
+          vMin: e.vMin + r * (1 - s),
+          vMax: e.vMin + r * (1 - i)
+        }
+      }
+      class ue {
+        config = {
+          blockHeight: .3,
+          initialSize: 2.4,
+          baseSpeed: 3.6,
+          speedPerLevel: .12,
+          maxSpeed: 9,
+          perfectThreshold: .08,
+          cameraOffsetY: 3.5,
+          cameraEase: .06,
+          bloomStrength: .55,
+          bloomThreshold: 1,
+          bloomRadius: .7,
+          exposure: 1.05,
+          shake: .12,
+          towerFriction: 2.4,
+          towerRestitution: 0,
+          towerDensity: .6,
+          towerLinearDamping: .5,
+          towerAngularDamping: .7,
+          gravity: -18
+        };
+        state = "idle";
+        paused = !1;
+        score = 0;
+        streak = 0;
+        placed = [];
+        current = null;
+        debris = [];
+        skipNextRender = !1;
+        lastTapAcceptedAt = 0;
+        lastWarmupDurationMs = 0;
+        debrisReserve = null;
+        cameraTargetY = 0;
+        cameraSmoothedY = 0;
+        cameraBaseOffset = new a.Vector3;
+        shakeAmp = 0;
+        scoreListeners = [];
+        perfectListeners = [];
+        stateListeners = [];
+        cameraOffsetListeners = [];
+        tapListeners = [];
+        animationId = null;
+        introDropAnimationId = null;
+        perfFrameCount = 0;
+        perfFrameDurationTotal = 0;
+        perfLastFrameAt = null;
+        perfLastReportAt = performance.now();
+        perfLongFrames = 0;
+        perfWorstFrame = 0;
+        onScore(e) {
+          this.scoreListeners.push(e)
+        }
+        onPerfect(e) {
+          this.perfectListeners.push(e)
+        }
+        onState(e) {
+          this.stateListeners.push(e)
+        }
+        onCameraOffset(e) {
+          this.cameraOffsetListeners.push(e)
+        }
+        onTapOutcome(e) {
+          this.tapListeners.push(e)
+        }
+        emitScore(e) {
+          for (const t of this.scoreListeners) t(e)
+        }
+        emitPerfect(e) {
+          for (const t of this.perfectListeners) t(e)
+        }
+        emitState(e) {
+          for (const t of this.stateListeners) t(e)
+        }
+        emitTapOutcome(e) {
+          (0, u.u3)() && (0, u.MJ)("tap_outcome", {
+            blockOffset: Number(e.blockOffset.toFixed(4)),
+            floorsAfter: e.floorsAfter,
+            result: e.result
+          });
+          for (const t of this.tapListeners) t(e)
+        }
+        timer = new a.Timer;
+        constructor(e) {
+          this.ctx = f(e), this.cameraBaseOffset.copy(this.ctx.camera.position), this.timer.connect(document)
+        }
+        async init(e = "") {
+          await Promise.all([l.default.init(), C(pe.map(({
+            texture: e
+          }) => e)), V(e)]), this.world = new l.default.World({
+            x: 0,
+            y: this.config.gravity,
+            z: 0
+          }), this.buildPodium(), this.reset(), this.warmupColdPaths(), X.playBackground(), this.animate()
+        }
+        warmupColdPaths() {
+          const e = performance.now(),
+            t = this.config.blockHeight,
+            i = .8 * this.config.initialSize,
+            s = this.config.initialSize,
+            r = [],
+            n = [],
+            o = [fe(M, "x", .2, .8), fe(M, "z", .15, .65), fe(M, "x", .4, .9)];
+          for (const e of o) w(i, t, s, e);
+          for (const e of pe) {
+            r.push(this.addPlacedCollider(0, -100, 0, i, s)), this.spawnDebris(0, -100, 0, .25, s, e.texture, e.left, e.right, o[0], this.config.baseSpeed, {
+              silent: !0
+            });
+            const t = this.debris.pop();
+            t && (this.world.removeRigidBody(t.body), j(t.mesh, t.poolKey))
+          }
+          for (let e = 0; e < pe.length; e++) {
+            const r = he(e),
+              a = D(i, t, s, x(e), r.texture, r.left, r.right, o[0]);
+            a.position.set(0, -100, 0), this.ctx.scene.add(a), n.push(a)
+          }
+          for (let e = 0; e < 4; e++) this.world.step();
+          this.ctx.renderer.render(this.ctx.scene, this.ctx.camera);
+          for (const e of n) this.ctx.scene.remove(e), $(e), T(e);
+          for (const e of r) this.world.removeRigidBody(e);
+          this.lastWarmupDurationMs = Number((performance.now() - e).toFixed(2)), (0, u.u3)() && (0, u.MJ)("warmup_complete", {
+            appearances: pe.length,
+            durationMs: this.lastWarmupDurationMs,
+            movingMeshes: pe.length
+          })
+        }
+        destroy() {
+          X.stop(), null !== this.introDropAnimationId && (cancelAnimationFrame(this.introDropAnimationId), this.introDropAnimationId = null), null !== this.animationId && (cancelAnimationFrame(this.animationId), this.animationId = null), this.clearDebris(), this.skipNextRender = !1;
+          for (const e of this.placed) this.ctx.scene.remove(e.mesh), $(e.mesh), T(e.mesh), e.body && this.world.removeRigidBody(e.body);
+          this.placed = [], this.current && (this.ctx.scene.remove(this.current.mesh), $(this.current.mesh), T(this.current.mesh), this.current = null), this.ctx.dispose(), y.forEach(e => {
+            for (const t of e) T(t)
+          }), y.clear(), this.timer.dispose(), this.scoreListeners = [], this.perfectListeners = [], this.stateListeners = [], this.cameraOffsetListeners = []
+        }
+        buildPodium() {
+          const e = this.world.createRigidBody(l.default.RigidBodyDesc.fixed().setTranslation(0, -.5, 0));
+          this.world.createCollider(l.default.ColliderDesc.cuboid(40, .5, 40), e)
+        }
+        activeDebrisCount() {
+          return this.debris.length + (this.debrisReserve ? 1 : 0)
+        }
+        releaseDebris(e) {
+          this.ctx.scene.remove(e.mesh), j(e.mesh, e.poolKey), this.world && this.world.removeRigidBody(e.body)
+        }
+        releaseDebrisReserve() {
+          this.debrisReserve && (this.releaseDebris(this.debrisReserve), this.debrisReserve = null)
+        }
+        stashDebrisReserve(e) {
+          this.releaseDebrisReserve();
+          const t = e.body.translation(),
+            i = e.body.rotation();
+          e.body.setTranslation({
+            x: t.x,
+            y: t.y,
+            z: t.z
+          }, !0), e.body.setRotation({
+            x: i.x,
+            y: i.y,
+            z: i.z,
+            w: i.w
+          }, !0), e.body.setLinvel({
+            x: 0,
+            y: 0,
+            z: 0
+          }, !0), e.body.setAngvel({
+            x: 0,
+            y: 0,
+            z: 0
+          }, !0), e.mesh.position.set(t.x, t.y, t.z), e.mesh.quaternion.set(i.x, i.y, i.z, i.w);
+          const s = Array.isArray(e.mesh.material) ? e.mesh.material : [e.mesh.material];
+          for (const e of s) e.opacity = 1;
+          this.debrisReserve = e
+        }
+        pinDebrisReserve() {
+          if (!this.debrisReserve) return;
+          const {
+            x: e,
+            y: t,
+            z: i
+          } = this.debrisReserve.mesh.position, s = this.debrisReserve.mesh.quaternion;
+          this.debrisReserve.body.setTranslation({
+            x: e,
+            y: t,
+            z: i
+          }, !0), this.debrisReserve.body.setRotation({
+            x: s.x,
+            y: s.y,
+            z: s.z,
+            w: s.w
+          }, !0), this.debrisReserve.body.setLinvel({
+            x: 0,
+            y: 0,
+            z: 0
+          }, !0), this.debrisReserve.body.setAngvel({
+            x: 0,
+            y: 0,
+            z: 0
+          }, !0)
+        }
+        addPlacedCollider(e, t, i, s, r) {
+          const n = this.config.blockHeight,
+            o = this.world.createRigidBody(l.default.RigidBodyDesc.fixed().setTranslation(e, t, i));
+          return this.world.createCollider(l.default.ColliderDesc.cuboid(s / 2, n / 2, r / 2).setFriction(this.config.towerFriction).setRestitution(this.config.towerRestitution), o), o
+        }
+        reset() {
+          X.stop(), null !== this.introDropAnimationId && (cancelAnimationFrame(this.introDropAnimationId), this.introDropAnimationId = null), this.paused = !1, this.skipNextRender = !1, this.lastTapAcceptedAt = 0;
+          for (const e of this.placed) this.ctx.scene.remove(e.mesh), $(e.mesh), T(e.mesh), e.body && this.world.removeRigidBody(e.body);
+          this.placed = [], this.current && (this.ctx.scene.remove(this.current.mesh), $(this.current.mesh), T(this.current.mesh), this.current = null), this.clearDebris(), this.score = 0, this.streak = 0, this.emitScore(0), this.emitPerfect(0);
+          const e = this.config.initialSize,
+            t = this.config.blockHeight,
+            i = x(0),
+            s = he(0),
+            r = t / 2,
+            n = D(e, t, e, i, s.texture, s.left, s.right);
+          n.position.set(0, r, 0), _(n), this.ctx.scene.add(n), this.placed.push({
+            mesh: n,
+            body: this.addPlacedCollider(0, r, 0, e, e),
+            sx: e,
+            sz: e,
+            px: 0,
+            pz: 0,
+            py: r,
+            color: i,
+            textureRegion: {
+              ...M
+            }
+          }), this.cameraTargetY = r, this.cameraSmoothedY = this.cameraTargetY, this.ctx.camera.position.set(this.cameraBaseOffset.x, this.cameraBaseOffset.y + this.cameraSmoothedY, this.cameraBaseOffset.z), this.ctx.camera.lookAt(0, this.cameraSmoothedY + this.config.cameraOffsetY, 0), this.setState("idle")
+        }
+        prepareIntroDrop() {
+          const e = this.placed[0]?.mesh;
+          e && (e.visible = !1)
+        }
+        playIntroDrop() {
+          const e = this.placed[0]?.mesh;
+          if (!e || e.visible) return;
+          const t = this.placed[0].py,
+            i = t + 4 * this.config.blockHeight,
+            s = performance.now();
+          e.position.y = i, e.visible = !0;
+          const r = n => {
+            const o = Math.min(1, (n - s) / 280),
+              a = o * o;
+            e.position.y = i + (t - i) * a, o < 1 ? this.introDropAnimationId = requestAnimationFrame(r) : (e.position.y = t, this.introDropAnimationId = null, this.pulseBlock(e), this.bumpShake(.12))
+          };
+          this.introDropAnimationId = requestAnimationFrame(r)
+        }
+        setState(e) {
+          const t = this.state;
+          this.state = e, "gameover" === e && "gameover" !== t && X.end(), this.emitState(e)
+        }
+        start() {
+          if ("playing" !== this.state && ("gameover" === this.state && this.reset(), this.paused = !1, this.setState("playing"), X.start(), this.spawnNext(), (0, u.u3)())) {
+            (0, u.wA)(), this.resetPerformanceCounters();
+            const e = this.ctx.renderer.getContext().getContextAttributes();
+            (0, u.MJ)("game_start", {
+              alpha: e?.alpha ?? null,
+              antialias: e?.antialias ?? null,
+              debrisReserve: null !== this.debrisReserve,
+              pixelRatio: this.ctx.renderer.getPixelRatio(),
+              renderer: this.ctx.renderer.info.programs?.length ?? 0,
+              shadows: this.ctx.renderer.shadowMap.enabled,
+              warmupAppearances: pe.length,
+              warmupMs: this.lastWarmupDurationMs
+            })
+          }
+        }
+        pause() {
+          "playing" === this.state && (this.paused = !0, this.skipNextRender = !1, X.pause())
+        }
+        resume() {
+          "playing" === this.state && (this.paused = !1, X.resume(), this.timer.reset())
+        }
+        spawnNext() {
+          const e = (0, u.u3)() ? performance.now() : 0,
+            t = this.placed[this.placed.length - 1],
+            i = this.placed.length,
+            s = i % 2 == 1 ? "x" : "z",
+            r = Math.random() < .5 ? 1 : -1,
+            n = this.config.blockHeight,
+            o = x(i),
+            a = he(i),
+            l = t.sx,
+            c = t.sz,
+            d = t.py + n,
+            p = "x" === s ? t.px - 5.5 * r : t.px,
+            h = "z" === s ? t.pz - 5.5 * r : t.pz,
+            f = D(l, n, c, o, a.texture, a.left, a.right, t.textureRegion);
+          f.position.set(p, d, h), _(f), this.ctx.scene.add(f);
+          const m = Math.min(this.config.maxSpeed, this.config.baseSpeed + this.config.speedPerLevel * (i - 1));
+          this.current = {
+            mesh: f,
+            sx: l,
+            sz: c,
+            py: d,
+            axis: s,
+            dir: r,
+            speed: m,
+            travel: 11,
+            travelled: 0,
+            color: o,
+            topTextureUrl: a.texture,
+            leftColor: a.left,
+            rightColor: a.right,
+            textureRegion: {
+              ...t.textureRegion
+            }
+          }, e > 0 && ((0, u.MJ)("spawn_next", {
+            appearanceIndex: i % pe.length,
+            axis: s,
+            debris: this.activeDebrisCount(),
+            durationMs: Number((performance.now() - e).toFixed(2)),
+            floorIndex: i
+          }), requestAnimationFrame(() => {
+            (0, u.MJ)("spawn_next_frame", {
+              durationMs: Number((performance.now() - e).toFixed(2)),
+              floorIndex: i
+            })
+          }))
+        }
+        queueTap() {
+          if (this.paused) return;
+          const e = performance.now();
+          if (e - this.lastTapAcceptedAt < 300) return;
+          if (this.lastTapAcceptedAt = e, "idle" === this.state || "gameover" === this.state || !this.current) return void this.processTap();
+          const t = this.current,
+            i = {
+              movingPos: "x" === t.axis ? t.mesh.position.x : t.mesh.position.z,
+              crossX: t.mesh.position.x,
+              crossZ: t.mesh.position.z
+            },
+            s = (0, u.u3)() ? performance.now() : 0;
+          s > 0 && (0, u.MJ)("tap", {
+            axis: t.axis,
+            debris: this.activeDebrisCount(),
+            dir: t.dir,
+            floors: this.score,
+            hasMovingBlock: !0,
+            state: this.state
+          }), this.placeBlock(i), this.presentTapCut(s)
+        }
+        onTap() {
+          this.queueTap()
+        }
+        presentTapCut(e) {
+          const t = e > 0 && (0, u.u3)(),
+            i = t ? performance.now() : 0;
+          this.skipNextRender = !0, this.ctx.renderer.render(this.ctx.scene, this.ctx.camera), t && (0, u.MJ)("cut_rendered", {
+            durationMs: Number((performance.now() - i).toFixed(2)),
+            sinceTapMs: Number((performance.now() - e).toFixed(2))
+          }), X.clap(), t && ((0, u.MJ)("clap_at", {
+            sinceTapMs: Number((performance.now() - e).toFixed(2))
+          }), (0, u.MJ)("tap_processed", {
+            durationMs: Number((performance.now() - e).toFixed(2))
+          }), requestAnimationFrame(() => {
+            (0, u.MJ)("tap_next_frame", {
+              durationMs: Number((performance.now() - e).toFixed(2))
+            })
+          }))
+        }
+        processTap() {
+          const e = (0, u.u3)(),
+            t = e ? performance.now() : 0;
+          if (e && (0, u.MJ)("tap", {
+              debris: this.activeDebrisCount(),
+              floors: this.score,
+              hasMovingBlock: null !== this.current,
+              state: this.state
+            }), "idle" === this.state) return void this.start();
+          if ("gameover" === this.state) return void this.reset();
+          if (!this.current) return;
+          const i = this.current,
+            s = {
+              movingPos: "x" === i.axis ? i.mesh.position.x : i.mesh.position.z,
+              crossX: i.mesh.position.x,
+              crossZ: i.mesh.position.z
+            };
+          this.placeBlock(s), this.presentTapCut(t)
+        }
+        placeBlock(e) {
+          const t = this.current;
+          "x" === t.axis ? t.mesh.position.x = e.movingPos : t.mesh.position.z = e.movingPos;
+          const i = this.placed[this.placed.length - 1],
+            s = t.axis,
+            r = e.movingPos,
+            n = "x" === s ? i.px : i.pz,
+            o = "x" === s ? t.sx : t.sz,
+            a = "x" === s ? i.sx : i.sz,
+            l = r - o / 2,
+            c = r + o / 2,
+            d = n - a / 2,
+            p = n + a / 2,
+            h = Math.max(l, d),
+            f = Math.min(c, p),
+            u = f - h;
+          if (u <= 0) return this.emitTapOutcome({
+            blockOffset: r - n,
+            floorsAfter: this.score,
+            result: "miss"
+          }), this.spawnDebrisFromCurrent(t, e.crossX, e.crossZ, t.sx, t.sz), this.ctx.scene.remove(t.mesh), $(t.mesh), T(t.mesh), this.current = null, void this.gameOver();
+          const m = Math.abs(r - n) < this.config.perfectThreshold;
+          let x, g, b = t.textureRegion;
+          if (m) x = o, g = n, this.streak += 1, this.emitPerfect(this.streak), this.bumpShake(.4);
+          else {
+            x = u, g = (h + f) / 2, this.streak = 0, this.emitPerfect(0);
+            const i = o - u,
+              a = r < n ? l + i / 2 : c - i / 2,
+              d = "x" === s ? a : e.crossX,
+              p = "z" === s ? a : e.crossZ,
+              m = "x" === s ? i : t.sx,
+              y = "z" === s ? i : t.sz,
+              v = (h - l) / o,
+              w = (f - l) / o,
+              k = r < n,
+              j = k ? 0 : w,
+              M = k ? v : 1;
+            b = fe(t.textureRegion, s, v, w);
+            const R = fe(t.textureRegion, s, j, M);
+            this.spawnDebris(d, t.py, p, m, y, t.topTextureUrl, t.leftColor, t.rightColor, R, t.speed)
+          }
+          const y = this.config.blockHeight,
+            v = "x" === s ? x : t.sx,
+            k = "z" === s ? x : t.sz,
+            j = "x" === s ? g : e.crossX,
+            M = "z" === s ? g : e.crossZ,
+            R = i.py + y,
+            z = w(v, y, k, b);
+          $(t.mesh), t.mesh.geometry = z, t.mesh.position.set(j, R, M),
+            function (e) {
+              const t = Array.isArray(e.material) ? e.material : [e.material];
+              for (const e of t) e.transparent = !1, e.opacity = 1
+            }(t.mesh);
+          const S = {
+            mesh: t.mesh,
+            body: this.addPlacedCollider(j, R, M, v, k),
+            sx: v,
+            sz: k,
+            px: j,
+            pz: M,
+            py: R,
+            color: t.color,
+            textureRegion: b
+          };
+          this.placed.push(S), this.current = null, this.score = this.placed.length - 1, this.emitScore(this.score), this.emitTapOutcome({
+            blockOffset: r - n,
+            floorsAfter: this.score,
+            result: m ? "perfect" : "partial"
+          });
+          const C = Math.max(0, this.placed.length - 10);
+          this.cameraTargetY = this.placed[0].py + C * this.config.blockHeight, this.pulseBlock(S.mesh), this.spawnNext()
+        }
+        spawnDebrisFromCurrent(e, t, i, s, r) {
+          this.spawnDebris(t, e.py, i, s, r, e.topTextureUrl, e.leftColor, e.rightColor, e.textureRegion, e.speed)
+        }
+        spawnDebris(e, t, i, s, r, n, o, a, c, d, p = {}) {
+          p.silent || this.releaseDebrisReserve();
+          const h = this.config.blockHeight,
+            f = {
+              topTextureUrl: n,
+              leftColor: o,
+              rightColor: a
+            },
+            {
+              mesh: m,
+              poolKey: x
+            } = k(s, h, r, f, c);
+          m.position.set(e, t, i), this.ctx.scene.add(m);
+          const g = this.world.createRigidBody(l.default.RigidBodyDesc.dynamic().setTranslation(e, t, i).setAngularDamping(.2).setLinearDamping(.05));
+          this.world.createCollider(l.default.ColliderDesc.cuboid(s / 2, h / 2, r / 2).setRestitution(.25).setFriction(.6).setDensity(1), g);
+          const b = this.placed[this.placed.length - 1],
+            y = e - (b ? b.px : 0),
+            v = i - (b ? b.pz : 0),
+            w = Math.hypot(y, v) || 1,
+            j = .35 * d;
+          g.setLinvel({
+            x: y / w * j,
+            y: .5,
+            z: v / w * j
+          }, !0), g.setAngvel({
+            x: 4 * (Math.random() - .5),
+            y: 4 * (Math.random() - .5),
+            z: 4 * (Math.random() - .5)
+          }, !0), this.debris.push({
+            mesh: m,
+            body: g,
+            spawnedAt: performance.now(),
+            poolKey: x
+          }), !p.silent && (0, u.u3)() && (0, u.MJ)("debris_created", {
+            activeDebris: this.activeDebrisCount(),
+            count: this.debris.length,
+            sizeX: Number(s.toFixed(3)),
+            sizeZ: Number(r.toFixed(3))
+          })
+        }
+        pulseBlock(e) {
+          const t = performance.now(),
+            i = () => {
+              const s = (performance.now() - t) / 220;
+              if (s >= 1) return void e.scale.set(1, 1, 1);
+              const r = 1 - Math.pow(1 - s, 3),
+                n = 1 + .18 * (1 - r),
+                o = 1 - .04 * (1 - r);
+              e.scale.set(o, n, o), requestAnimationFrame(i)
+            };
+          i()
+        }
+        bumpShake(e) {
+          this.shakeAmp = Math.min(1, this.shakeAmp + e)
+        }
+        gameOver() {
+          "gameover" !== this.state && (this.setState("gameover"), this.current && (this.ctx.scene.remove(this.current.mesh), $(this.current.mesh), T(this.current.mesh), this.current = null), this.bumpShake(.35))
+        }
+        clearDebris() {
+          for (const e of this.debris) this.releaseDebris(e);
+          this.debris = [], this.releaseDebrisReserve(), this.skipNextRender = !1
+        }
+        updateDebris(e) {
+          const t = 3500;
+          for (let i = this.debris.length - 1; i >= 0; i--) {
+            const s = this.debris[i],
+              r = s.body.translation(),
+              n = s.body.rotation();
+            s.mesh.position.set(r.x, r.y, r.z), s.mesh.quaternion.set(n.x, n.y, n.z, n.w);
+            const o = e - s.spawnedAt;
+            if (o > 2900) {
+              const e = Array.isArray(s.mesh.material) ? s.mesh.material : [s.mesh.material];
+              if (1 === this.debris.length)
+                for (const t of e) t.opacity = 1;
+              else {
+                const t = Math.max(0, 1 - (o - 2900) / 600);
+                for (const i of e) i.opacity = t
+              }
+            }
+            if (o > t || r.y < -20) {
+              if (1 === this.debris.length) {
+                this.stashDebrisReserve(s), this.debris.splice(i, 1), (0, u.u3)() && (0, u.MJ)("debris_reserved", {
+                  activeDebris: this.activeDebrisCount(),
+                  visibleDebris: this.debris.length
+                });
+                continue
+              }
+              this.releaseDebris(s), this.debris.splice(i, 1), (0, u.u3)() && (0, u.MJ)("debris_removed", {
+                activeDebris: this.activeDebrisCount(),
+                count: this.debris.length
+              })
+            }
+          }
+        }
+        updateCurrent(e) {
+          if (!this.current) return;
+          const t = this.current,
+            i = t.speed * e * t.dir;
+          "x" === t.axis ? t.mesh.position.x += i : t.mesh.position.z += i;
+          const s = this.placed[this.placed.length - 1],
+            r = "x" === t.axis ? s.px : s.pz,
+            n = "x" === t.axis ? t.mesh.position.x : t.mesh.position.z,
+            o = t.travel / 2;
+          if (Math.abs(n - r) >= o) {
+            const e = r + Math.sign(n - r) * o;
+            "x" === t.axis ? t.mesh.position.x = e : t.mesh.position.z = e, t.dir = -1 * t.dir, (0, u.u3)() && (0, u.MJ)("dir_reversed", {
+              axis: t.axis,
+              debris: this.activeDebrisCount(),
+              floors: this.score
+            })
+          }
+        }
+        updateCamera(e) {
+          const t = this.ctx.camera,
+            i = 1 - Math.exp(60 * -this.config.cameraEase * e);
+          this.cameraSmoothedY += (this.cameraTargetY - this.cameraSmoothedY) * i, t.position.x = this.cameraBaseOffset.x, t.position.y = this.cameraBaseOffset.y + this.cameraSmoothedY, t.position.z = this.cameraBaseOffset.z, t.lookAt(0, this.cameraSmoothedY + this.config.cameraOffsetY, 0);
+          const s = this.placed[0]?.py ?? this.cameraSmoothedY,
+            r = Math.max(0, this.cameraSmoothedY - s);
+          for (const e of this.cameraOffsetListeners) e(r);
+          if (this.shakeAmp > .001) {
+            const i = this.shakeAmp * this.config.shake;
+            t.position.x += (Math.random() - .5) * i, t.position.z += (Math.random() - .5) * i, this.shakeAmp *= Math.pow(.001, e)
+          }
+        }
+        applyBloomFromConfig() {
+          this.ctx.bloom.strength = this.config.bloomStrength, this.ctx.bloom.threshold = this.config.bloomThreshold, this.ctx.bloom.radius = this.config.bloomRadius, this.ctx.renderer.toneMappingExposure = this.config.exposure
+        }
+        applyGravity() {
+          this.world.gravity.y = this.config.gravity, this.debrisReserve?.body.wakeUp();
+          for (const e of this.debris) e.body.wakeUp()
+        }
+        resetPerformanceCounters() {
+          const e = performance.now();
+          this.perfFrameCount = 0, this.perfFrameDurationTotal = 0, this.perfLastFrameAt = null, this.perfLastReportAt = e, this.perfLongFrames = 0, this.perfWorstFrame = 0
+        }
+        updatePerformanceLog(e, t) {
+          if (!(0, u.u3)()) return;
+          if ("playing" !== this.state) return void(this.perfLastFrameAt = e);
+          if (null !== this.perfLastFrameAt) {
+            const t = e - this.perfLastFrameAt;
+            this.perfFrameCount += 1, this.perfFrameDurationTotal += t, this.perfWorstFrame = Math.max(this.perfWorstFrame, t), t >= 50 && (this.perfLongFrames += 1, (0, u.MJ)("long_frame", {
+              debris: this.activeDebrisCount(),
+              durationMs: Number(t.toFixed(2)),
+              floors: this.score,
+              moving: null !== this.current
+            }))
+          }
+          this.perfLastFrameAt = e;
+          const i = e - this.perfLastReportAt;
+          if (i < 1e3 || 0 === this.perfFrameCount) return;
+          const s = this.ctx.renderer.info,
+            r = performance.memory;
+          (0, u.MJ)("fps_sample", {
+            averageFrameMs: Number((this.perfFrameDurationTotal / this.perfFrameCount).toFixed(2)),
+            calls: s.render.calls,
+            debris: this.activeDebrisCount(),
+            floors: this.score,
+            fps: Number((1e3 * this.perfFrameCount / i).toFixed(1)),
+            geometries: s.memory.geometries,
+            longFrames: this.perfLongFrames,
+            ...r ? {
+              heapLimitMb: Number((r.jsHeapSizeLimit / 1048576).toFixed(1)),
+              heapUsedMb: Number((r.usedJSHeapSize / 1048576).toFixed(1))
+            } : {},
+            renderDurationMs: Number(t.toFixed(2)),
+            textures: s.memory.textures,
+            triangles: s.render.triangles,
+            worstFrameMs: Number(this.perfWorstFrame.toFixed(2))
+          }), this.perfFrameCount = 0, this.perfFrameDurationTotal = 0, this.perfLastReportAt = e, this.perfLongFrames = 0, this.perfWorstFrame = 0
+        }
+        animate = e => {
+          this.animationId = requestAnimationFrame(this.animate), this.timer.update(e);
+          const t = Math.min(.05, this.timer.getDelta()),
+            i = performance.now();
+          this.paused || (this.world.step(), this.debris.length > 0 && this.updateDebris(i), this.pinDebrisReserve(), this.updateCurrent(t), this.updateCamera(t));
+          let s = 0;
+          if (this.skipNextRender) this.skipNextRender = !1;
+          else if ((0, u.u3)()) {
+            const e = performance.now();
+            this.ctx.renderer.render(this.ctx.scene, this.ctx.camera), s = performance.now() - e, this.updatePerformanceLog(i, s)
+          } else this.ctx.renderer.render(this.ctx.scene, this.ctx.camera)
+        }
+      }
+      var me = i(5595),
+        xe = i(3546);
+      const ge = e => Math.max(1, Math.round(e.current)),
+        be = () => {
+          const e = xe.SP.defaults.headers.common.Authorization,
+            t = "string" == typeof e ? e : void 0;
+          return {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+            ...t ? {
+              Authorization: t
+            } : {}
+          }
+        },
+        ye = (e, t) => {
+          const i = xe.SP.defaults.baseURL ?? "";
+          fetch(`${i}${e}`, {
+            method: "POST",
+            headers: be(),
+            body: JSON.stringify(t),
+            keepalive: !0
+          }).catch(() => {})
+        },
+        ve = (e, t) => {
+          ye("/game/session/ping", {
+            session_id: e.session_id,
+            session_holder_id: e.session_holder_id,
+            duration_ms: t
+          })
+        },
+        we = ({
+          elapsedRef: e,
+          enabled: t = !0,
+          gameState: i,
+          onSessionBlocked: r,
+          onStartError: o,
+          score: a
+        }) => {
+          const l = (0, s.useRef)(null),
+            c = (0, s.useRef)(!1),
+            d = (0, s.useRef)(null),
+            p = (0, s.useRef)(0),
+            h = (0, s.useRef)([]),
+            f = (0, s.useRef)(0),
+            [u, m, x] = (0, n.useUnit)([me.vH, me.PK, me.Qm.pending]);
+          (0, s.useEffect)(() => {
+            d.current = u
+          }, [u]);
+          const g = (0, s.useCallback)(async () => {
+              if (!t) return;
+              const i = d.current;
+              if (!i || 0 === h.current.length) return;
+              const s = h.current.splice(0, 50);
+              try {
+                await (0, me.E)({
+                  session_id: i.session_id,
+                  session_holder_id: i.session_holder_id,
+                  duration_ms: ge(e),
+                  taps: s
+                })
+              } catch {
+                h.current.unshift(...s)
+              }
+            }, [e, t]),
+            b = (0, s.useCallback)(i => {
+              t && (h.current.push({
+                tap_index: p.current++,
+                timestamp_ms: Math.round(e.current),
+                block_offset: i.blockOffset,
+                result: i.result,
+                floors_after: i.floorsAfter
+              }), h.current.length >= 10 && g())
+            }, [e, t, g]),
+            y = (0, s.useCallback)(() => {
+              t && !c.current && (c.current = !0, (0, me.L2)((0, me.i$)()).catch(e => {
+                c.current = !1, o?.(e)
+              }))
+            }, [t, o]);
+          (0, s.useEffect)(() => {
+            "idle" === i && (c.current = !1)
+          }, [i]), (0, s.useEffect)(() => {
+            t && u && g()
+          }, [u, t, g]), (0, s.useEffect)(() => {
+            if (!t || "playing" !== i) return;
+            const e = window.setInterval(() => {
+              g()
+            }, 2e3);
+            return () => window.clearInterval(e)
+          }, [t, g, i]), (0, s.useEffect)(() => {
+            if (!t || !u || "playing" !== i) return;
+            const s = window.setInterval(() => {
+              (0, me.vx)({
+                session_id: u.session_id,
+                session_holder_id: u.session_holder_id,
+                duration_ms: ge(e)
+              }).catch(e => {
+                e instanceof xe.hD && ("session revoked" === e.code || "session not found" === e.code) && ((0, me.S0)(), r())
+              })
+            }, 3e4);
+            return () => window.clearInterval(s)
+          }, [u, e, t, i, r]), (0, s.useEffect)(() => {
+            if (!t) return;
+            const i = () => {
+                const e = Date.now();
+                return e - f.current < 500 || (f.current = e, !1)
+              },
+              s = () => {
+                const t = d.current;
+                if (!t || i()) return;
+                const s = ge(e);
+                ((e, t, i) => {
+                  0 !== t.length && ye("/game/taps", {
+                    session_id: e.session_id,
+                    session_holder_id: e.session_holder_id,
+                    duration_ms: i,
+                    taps: t
+                  })
+                })(t, h.current.splice(0, 50), s), ve(t, s)
+              },
+              r = () => {
+                if ("hidden" !== document.visibilityState) return;
+                const t = d.current;
+                t && !i() && (g(), ve(t, ge(e)))
+              };
+            return window.addEventListener("pagehide", s), document.addEventListener("visibilitychange", r), () => {
+              window.removeEventListener("pagehide", s), document.removeEventListener("visibilitychange", r)
+            }
+          }, [e, t, g]), (0, s.useEffect)(() => {
+            t && u && "gameover" === i && !x && l.current !== u.session_id && (l.current = u.session_id, (async () => {
+              await g(), await (0, me.Qm)({
+                session_id: u.session_id,
+                session_holder_id: u.session_holder_id,
+                floors: Math.max(0, a),
+                duration_ms: ge(e),
+                end_reason: "collapsed"
+              })
+            })())
+          }, [u, e, t, x, g, i, a]);
+          const v = (0, s.useCallback)((t, i) => {
+            if (!u) return;
+            const s = ge(e);
+            (t ? me.a7 : me.bF)({
+              session_id: u.session_id,
+              session_holder_id: u.session_holder_id,
+              duration_ms: s
+            }).then(() => i(!t))
+          }, [u, e]);
+          return {
+            activeSession: u,
+            endPending: x,
+            error: m,
+            recordTap: b,
+            startSession: y,
+            togglePause: v
+          }
+        };
+      i(633);
+      var ke = i(3717),
+        je = i(8591),
+        Me = i(669),
+        Re = i(6918),
+        ze = i(4848);
+      const Se = ({
+          floors: e,
+          onConfirm: t,
+          onExit: i,
+          onRestart: s,
+          training: r = !1
+        }) => (0, ze.jsxs)(Ae, {
+          "aria-label": "Игра завершена",
+          "aria-modal": "true",
+          onPointerDown: e => e.stopPropagation(),
+          role: "dialog",
+          children: [(0, ze.jsxs)(Fe, {
+            children: [(0, ze.jsxs)(De, {
+              children: [(0, ze.jsx)(_e, {
+                "aria-hidden": "true"
+              }), (0, ze.jsx)($e, {
+                children: (0, ze.jsxs)(Te, {
+                  "aria-label": r ? `Результат: ${e} этажей` : `Зачислено этажей: ${e}`,
+                  children: [(0, ze.jsx)(Le, {
+                    children: r ? e : `+${e}`
+                  }), (0, ze.jsx)(Me.I, {
+                    "aria-hidden": "true",
+                    height: 16,
+                    name: "layer",
+                    width: 16
+                  })]
+                })
+              })]
+            }), (0, ze.jsx)(Pe, {
+              children: r ? "Твой результат" : "Зачислили на баланс"
+            })]
+          }), r ? (0, ze.jsxs)(Ee, {
+            children: [(0, ze.jsx)(Be, {
+              onClick: i,
+              variant: "secondary",
+              children: "Выйти"
+            }), (0, ze.jsx)(Be, {
+              onClick: s,
+              children: "Играть ещё"
+            })]
+          }) : (0, ze.jsx)(Oe, {
+            onClick: t,
+            children: "Супер!"
+          })]
+        }),
+        Ce = (0, r.keyframes)(["from{opacity:0;}to{opacity:1;}"]),
+        Ae = r.default.div(["display:flex;justify-content:center;align-items:center;padding:24px 16px 32px;position:absolute;z-index:101;inset:0;background:rgb(3 14 25 / 70%);backdrop-filter:blur(12px);animation:", " 300ms ease-out both;"], Ce),
+        Fe = r.default.div(["display:flex;align-items:center;flex-direction:column;"]),
+        De = r.default.div(["width:240px;height:240px;position:relative;"]),
+        _e = (0, r.default)(ke.A)(["display:block;width:240px;height:240px;"]),
+        $e = r.default.div(["position:absolute;top:50px;right:2px;"]),
+        Te = r.default.div(["display:flex;justify-content:center;align-items:center;gap:4px;height:40px;min-width:83px;padding:8px 12px;border-radius:100px;background:rgb(255 255 255 / 15%);color:#fff;backdrop-filter:blur(15px);"]),
+        Le = r.default.span(["font-family:", ";font-size:24px;font-weight:400;line-height:30px;white-space:nowrap;font-feature-settings:'liga' off,'clig' off;"], Re.pQ.onyOne),
+        Pe = r.default.div(["color:#fff;font-family:", ";font-size:24px;font-weight:400;line-height:30px;text-align:center;font-feature-settings:'liga' off,'clig' off;"], Re.pQ.onyOne),
+        Oe = (0, r.default)(je.m)(["width:225px;position:absolute;bottom:var(--navigation-bottom);left:50%;transform:translateX(-50%);"]),
+        Ee = r.default.div(["display:flex;gap:16px;width:calc(100% - 32px);position:absolute;bottom:var(--navigation-bottom);left:16px;"]),
+        Be = (0, r.default)(je.m)(["flex:1;backdrop-filter:none !important;"]),
+        Ie = (0, r.createGlobalStyle)([".game-page-root{width:100%;height:100%;position:relative;overflow:hidden;}@media (max-width:768px){.game-page-root{width:100%;height:100%;padding:0;}}.game-page-root,.game-page-root *{touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}.game-page-root canvas{display:block !important;width:100% !important;height:100% !important;}.tp-dfwv{z-index:1000 !important;pointer-events:all !important;}"]);
+      var Je = i(7568),
+        Ne = i(8627),
+        Ye = i(5887),
+        Qe = i(8156),
+        Ue = i(7795),
+        He = i(3040),
+        qe = i(5424),
+        We = i(2006);
+      const Ve = ({
+          elapsedRef: e,
+          gameState: t,
+          headerVisible: i,
+          isPaused: r,
+          isSoundEnabled: n,
+          onPauseToggle: o,
+          onSoundToggle: a
+        }) => {
+          const l = ((e, t, i) => {
+            const [r, n] = (0, s.useState)(0);
+            return (0, s.useEffect)(() => {
+              if ("idle" === e) return i.current = 0, void n(0);
+              if ("playing" !== e || t) return;
+              const s = performance.now() - i.current;
+              let r = performance.now(),
+                o = 0;
+              const a = () => {
+                const e = performance.now(),
+                  t = e - s;
+                i.current = t, e - r >= 50 && (r = e, n(t)), o = requestAnimationFrame(a)
+              };
+              return a(), () => cancelAnimationFrame(o)
+            }, [i, e, t]), r
+          })(t, r, e);
+          return (0, ze.jsx)(et, {
+            $visible: i,
+            children: (0, ze.jsx)(Je.Y, {
+              elapsedMs: l,
+              isPaused: r,
+              isSoundEnabled: n,
+              onPauseToggle: o,
+              onSoundToggle: a,
+              variant: "game"
+            })
+          })
+        },
+        Xe = ({
+          gameVisible: e = !0,
+          headerVisible: t = !0,
+          training: i = !1,
+          onBackgroundShift: r,
+          onLoadError: a,
+          onReady: l
+        }) => {
+          const c = (0, s.useRef)(null),
+            d = (0, s.useRef)(null),
+            p = (0, s.useRef)(!1),
+            h = (0, o.useNavigate)(),
+            f = (0, n.useUnit)(Ne.Fn),
+            u = (0, n.useUnit)(Qe.c),
+            m = (0, n.useUnit)(Ue.Q9),
+            x = (0, n.useUnit)(Ue.Pm),
+            {
+              mainGameClose: g,
+              mainGameRepeat: b
+            } = (0, Ye.A)(),
+            [y, v] = (0, s.useState)(0),
+            [w, k] = (0, s.useState)("idle"),
+            [j, M] = (0, s.useState)(!1),
+            [R, z] = (0, s.useState)(!1),
+            S = (0, s.useRef)(0),
+            C = (0, s.useCallback)(() => {
+              d.current?.setState("gameover")
+            }, []),
+            A = (0, s.useCallback)(() => {
+              h("/start")
+            }, [h]),
+            {
+              activeSession: F,
+              endPending: D,
+              error: _,
+              recordTap: $,
+              startSession: T,
+              togglePause: L
+            } = we({
+              elapsedRef: S,
+              enabled: !i,
+              gameState: w,
+              onSessionBlocked: C,
+              onStartError: A,
+              score: y
+            });
+          (0, s.useEffect)(() => {
+            i || 0 !== F?.attempts_balance_after || (p.current = !0)
+          }, [F, i]), (0, s.useEffect)(() => {
+            if (!c.current || d.current) return;
+            const e = new ue(c.current);
+            d.current = e, e.onScore(e => {
+              v(e), M(!0), setTimeout(() => M(!1), 150)
+            }), e.onTapOutcome(e => {
+              $(e)
+            }), e.onState(e => {
+              k(e), "playing" === e && T(), "playing" !== e && z(!1)
+            }), e.onCameraOffset(t => {
+              const i = 25 * e.config.blockHeight,
+                s = Math.min(1, t / i);
+              r?.(350 * s)
+            });
+            let t = !1;
+            return e.init(u).then(() => {
+              t || (e.prepareIntroDrop(), requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  t || l?.()
+                })
+              }))
+            }).catch(e => {
+              t || a?.(e)
+            }), () => {
+              t = !0, e.destroy(), d.current = null
+            }
+          }, [r, a, l, $, T, u]), (0, s.useEffect)(() => {
+            e && d.current?.playIntroDrop()
+          }, [e]), (0, s.useEffect)(() => {
+            const e = () => {
+              if ("hidden" !== document.visibilityState) return;
+              const e = d.current;
+              e && "playing" === e.state && !e.paused && (e.pause(), z(!0), !i && F && L(!1, t => {
+                t && e.pause(), z(!0)
+              }))
+            };
+            return document.addEventListener("visibilitychange", e), () => document.removeEventListener("visibilitychange", e)
+          }, [F, L, i]), (0, s.useEffect)(() => {
+            const t = t => {
+              if ("Space" !== t.code || t.repeat) return;
+              const i = t.target,
+                s = i?.closest("button, a, input, textarea, select");
+              if (s?.checkVisibility()) return;
+              t.preventDefault();
+              const r = d.current;
+              r && e && "gameover" !== r.state && r.queueTap()
+            };
+            return window.addEventListener("keydown", t), () => window.removeEventListener("keydown", t)
+          }, [e]);
+          const P = () => {
+              const e = d.current;
+              if (e && "playing" === e.state) return i || !F ? (e.paused ? e.resume() : e.pause(), void z(e.paused)) : void L(e.paused, t => {
+                t ? e.pause() : e.resume(), z(t)
+              })
+            },
+            O = () => {
+              g(), h("/start")
+            };
+          return (0, ze.jsxs)(ze.Fragment, {
+            children: [(0, ze.jsx)(Ie, {}), (0, ze.jsxs)(Ke, {
+              className: "game-page-root",
+              onPointerDown: e => {
+                e.target.closest(".tp-dfwv") || "touch" === e.pointerType && e.clientY > window.innerHeight - 40 || d.current?.queueTap()
+              },
+              children: [(0, ze.jsx)(Ze, {
+                ref: c
+              }), (0, ze.jsx)(Ve, {
+                elapsedRef: S,
+                gameState: w,
+                headerVisible: t,
+                isPaused: R,
+                isSoundEnabled: f,
+                onPauseToggle: P,
+                onSoundToggle: () => {
+                  (0, Ne.QF)()
+                }
+              }), (0, ze.jsxs)(tt, {
+                children: [(0, ze.jsx)(nt, {
+                  $bump: j,
+                  children: y
+                }), (0, ze.jsx)(ot, {
+                  $hidden: "playing" === w,
+                  children: D ? "" : !i && _ instanceof xe.hD ? Ge(_.code) : "idle" === w ? "Жми по экрану, \n чтобы ставить этажи" : ""
+                })]
+              }), R && (0, ze.jsx)(it, {
+                onPointerDown: e => e.stopPropagation(),
+                children: (0, ze.jsx)(st, {
+                  "aria-label": "Продолжить игру",
+                  onClick: P,
+                  type: "button",
+                  children: (0, ze.jsx)(Me.I, {
+                    "aria-hidden": "true",
+                    height: 80,
+                    name: "play",
+                    width: 80
+                  })
+                })
+              }), "gameover" === w && (0, ze.jsx)(Se, {
+                floors: y,
+                training: i,
+                onExit: O,
+                onRestart: () => {
+                  b();
+                  const e = d.current;
+                  e && e.reset()
+                },
+                onConfirm: () => {
+                  O(), p.current && m && (0, qe.cO)(m.attempts, m.bet_progress, x ? 1 : 0) && (0, We.sd)(He.MP, {
+                    mode: "spent-all"
+                  })
+                }
+              })]
+            })]
+          })
+        },
+        Ge = e => {
+          switch (e) {
+            case "no attempts":
+              return "Попытки закончились";
+            case "daily limit reached":
+              return "Дневной лимит игр исчерпан";
+            case "session revoked":
+              return "Игра продолжена в другой вкладке";
+            case "session not found":
+              return "Игровая сессия завершена";
+            default:
+              return "Не удалось связаться с сервером"
+          }
+        },
+        Ke = r.default.div(["background:transparent;"]),
+        Ze = r.default.div(["position:absolute;inset:0;"]),
+        et = r.default.div(["position:absolute;z-index:100;inset:0;opacity:", ";transform:translateY(", ");transition:opacity 220ms ease,transform 420ms cubic-bezier(0.22,1,0.36,1);pointer-events:", ";"], ({
+          $visible: e
+        }) => e ? 1 : 0, ({
+          $visible: e
+        }) => e ? "0" : "-100%", ({
+          $visible: e
+        }) => e ? "auto" : "none"),
+        tt = r.default.div(["display:flex;align-items:center;padding-top:120px;flex-direction:column;position:absolute;inset:0;pointer-events:none;z-index:10;"]),
+        it = r.default.div(["display:flex;justify-content:center;align-items:center;position:absolute;z-index:101;inset:0;background:rgb(3 14 25 / 70%);backdrop-filter:blur(12px);"]),
+        st = r.default.button(["display:flex;justify-content:center;align-items:center;width:80px;height:80px;padding:0;border:0;background:transparent;color:#fff;cursor:pointer;"]),
+        rt = (0, r.keyframes)(["0%{transform:scale(1);}50%{transform:scale(1.18);}100%{transform:scale(1);}"]),
+        nt = r.default.div(["color:#fff;text-align:center;font-family:", ";font-feature-settings:'liga' off,'clig' off;font-size:100px;font-style:normal;font-weight:900;line-height:96px;text-transform:uppercase;", ""], Re.pQ.onyTrack, ({
+          $bump: e
+        }) => e && (0, r.css)(["animation:", " 150ms ease-out;"], rt)),
+        ot = r.default.div(["margin-top:16px;font-size:20px;font-family:", ";font-weight:500;line-height:24px;font-feature-settings:'liga' off,'clig' off;color:#fff;text-align:center;white-space:pre-line;opacity:", ";transition:opacity 240ms ease;pointer-events:none;"], Re.pQ.onyOne, ({
+          $hidden: e
+        }) => e ? "0" : "1")
+    },
+    150: function (e, t, i) {
+      i.d(t, {
+        IA: function () {
+          return p
+        },
+        MJ: function () {
+          return d
+        },
+        Mr: function () {
+          return c
+        },
+        jv: function () {
+          return h
+        },
+        u3: function () {
+          return l
+        },
+        wA: function () {
+          return a
+        }
+      });
+      let s = [],
+        r = !1,
+        n = null,
+        o = null;
+      const a = () => {
+          s = [], o = (new Date).toISOString()
+        },
+        l = () => r,
+        c = e => {
+          if (r = e, r) {
+            if ("undefined" != typeof PerformanceObserver) try {
+              n = new PerformanceObserver(e => {
+                for (const t of e.getEntries()) d("browser_long_task", {
+                  durationMs: Number(t.duration.toFixed(2)),
+                  name: t.name,
+                  startTimeMs: Number(t.startTime.toFixed(2))
+                })
+              }), n.observe({
+                type: "longtask",
+                buffered: !1
+              })
+            } catch {
+              n = null
+            }
+          } else n?.disconnect(), n = null, s = [], o = null
+        },
+        d = (e, t = {}) => {
+          r && (s.push({
+            atMs: Math.round(performance.now()),
+            data: t,
+            type: e
+          }), s.length > 2e3 && s.shift())
+        },
+        p = () => s.length,
+        h = () => {
+          if (0 === s.length) return !1;
+          const e = (new Date).toISOString().replace(/[:.]/g, "-"),
+            t = new Blob([JSON.stringify({
+              metadata: {
+                devicePixelRatio: window.devicePixelRatio,
+                language: navigator.language,
+                platform: navigator.platform,
+                screen: `${window.screen.width}x${window.screen.height}`,
+                userAgent: navigator.userAgent,
+                viewport: `${window.innerWidth}x${window.innerHeight}`
+              },
+              startedAt: o,
+              entries: s
+            }, null, 2)], {
+              type: "application/json"
+            }),
+            i = URL.createObjectURL(t),
+            r = document.createElement("a");
+          return r.href = i, r.download = `tower-perf-${e}.json`, document.body.appendChild(r), r.click(), r.remove(), window.setTimeout(() => URL.revokeObjectURL(i), 1e3), !0
+        }
+    },
+    7568: function (e, t, i) {
+      i.d(t, {
+        Y: function () {
+          return k
+        }
+      });
+      var s = i(7871),
+        r = i(7795),
+        n = i(3040),
+        o = i(4477),
+        a = i(9082),
+        l = i(5887),
+        c = i(3558),
+        d = i(6918),
+        p = i(4848);
+      const h = ({
+          attempts: e,
+          serverTime: t
+        }) => {
+          const {
+            mainNotifyMakeBet: i
+          } = (0, l.A)(), s = (0, r.Yu)(e.refreshes_at, t), o = (0, c.zt)(s), d = (0, a.q)(e.used_today, 0, 10), h = (0, a.q)(Math.min(e.balance, e.remaining_today), 0, 10 - d);
+          return (0, p.jsxs)(f, {
+            onClick: () => {
+              i(), (0, n.qB)()
+            },
+            type: "button",
+            children: [(0, p.jsx)(u, {
+              $available: h,
+              $used: d,
+              "aria-hidden": "true",
+              focusable: "false"
+            }), (0, p.jsxs)(m, {
+              children: [(0, p.jsx)(x, {
+                children: o
+              }), (0, p.jsx)(g, {
+                children: "до обновления"
+              })]
+            })]
+          })
+        },
+        f = s.default.button(["display:flex;align-items:center;gap:8px;height:48px;padding:8px 16px 8px 8px;border:0;border-radius:24px;background:var(--transparent-light-15,rgb(255 255 255 / 15%));cursor:pointer;pointer-events:auto;"]),
+        u = (0, s.default)(o.A)(["flex:0 0 32px;width:32px;height:32px;", ""], ({
+          $available: e,
+          $used: t
+        }) => (({
+          $available: e,
+          $used: t
+        }) => Array.from({
+          length: 10
+        }, (i, r) => {
+          const n = r < t,
+            o = r < t + e,
+            a = n ? "#fff" : o ? "#FAF948" : "#fff",
+            l = n ? .75 : o ? 1 : .2;
+          return (0, s.css)(["path[data-petal='", "']{fill:", ";fill-opacity:", ";}"], r + 1, a, l)
+        }))({
+          $available: e,
+          $used: t
+        })),
+        m = s.default.div(["display:flex;align-items:flex-start;flex-direction:column;"]),
+        x = s.default.span(["color:var(--text-primary,#fff);font-family:", ";font-size:16px;font-weight:500;line-height:20px;font-variant-numeric:lining-nums tabular-nums;"], d.pQ.onyOne),
+        g = s.default.span(["color:var(--text-primary,#fff);font-family:", ";font-size:12px;font-weight:400;line-height:14px;font-feature-settings:'liga' off,'clig' off;"], d.pQ.onyOne);
+      var b = i(5043),
+        y = i(2006),
+        v = i(669),
+        w = i(7511);
+      const k = e => "start" === e.variant ? (0, p.jsx)(A, {
+          attempts: e.attempts,
+          serverTime: e.serverTime,
+          totalFloors: e.totalFloors
+        }) : (0, p.jsx)(j, {
+          ...e
+        }),
+        j = ({
+          elapsedMs: e,
+          isPaused: t,
+          isSoundEnabled: i,
+          onPauseToggle: s,
+          onSoundToggle: r
+        }) => (0, p.jsxs)(R, {
+          onPointerDown: e => e.stopPropagation(),
+          children: [(0, p.jsxs)(z, {
+            children: [(0, p.jsx)(S, {
+              "aria-label": t ? "Продолжить игру" : "Поставить игру на паузу",
+              onClick: s,
+              type: "button",
+              children: (0, p.jsx)(v.I, {
+                "aria-hidden": "true",
+                name: t ? "play" : "pause",
+                size: 24
+              })
+            }), (0, p.jsx)(S, {
+              "aria-label": i ? "Выключить звук" : "Включить звук",
+              onClick: r,
+              type: "button",
+              children: (0, p.jsx)(v.I, {
+                "aria-hidden": "true",
+                name: i ? "sound-on" : "sound-off",
+                size: 24
+              })
+            })]
+          }), (0, p.jsx)(C, {
+            children: (0, p.jsx)(w.z, {
+              value: M(e)
+            })
+          })]
+        }),
+        M = e => `${Math.floor(e/6e4).toString().padStart(2,"0")}:${Math.floor(e%6e4/1e3).toString().padStart(2,"0")}.${Math.floor(e%1e3/10).toString().padStart(2,"0")}`,
+        R = s.default.header(["display:flex;justify-content:space-between;align-items:center;width:calc(100% - 32px);position:absolute;z-index:100;top:24px;left:50%;transform:translateX(-50%);"]),
+        z = s.default.div(["display:flex;gap:8px;"]),
+        S = s.default.button(["display:flex;justify-content:center;align-items:center;width:48px;height:48px;padding:8px;border:0;border-radius:50%;background:rgb(255 255 255 / 10%);color:#fff;cursor:pointer;backdrop-filter:blur(10px);"]),
+        C = s.default.div(["display:flex;align-items:center;gap:8px;height:48px;padding:8px 16px;border-radius:48px;border:1px solid rgb(255 255 255 / 15%);background:rgb(255 255 255 / 5%);color:#fff;font-family:", ";font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-size:16px;font-style:normal;font-weight:400;line-height:22px;text-align:center;"], d.pQ.onyOne),
+        A = ({
+          attempts: e,
+          serverTime: t,
+          totalFloors: i
+        }) => {
+          const {
+            mainInformation: s
+          } = (0, l.A)();
+          return (0, p.jsx)(F, {
+            children: (0, p.jsxs)(D, {
+              children: [(0, p.jsx)(h, {
+                attempts: e,
+                serverTime: t
+              }), (0, p.jsxs)(_, {
+                "aria-label": `Этажей за всё время: ${i}`,
+                onClick: () => {
+                  s(), (0, y.sd)(b.l)
+                },
+                type: "button",
+                children: [(0, p.jsx)(v.I, {
+                  "aria-hidden": "true",
+                  name: "layer",
+                  size: 24
+                }), (0, p.jsx)($, {
+                  children: i
+                })]
+              })]
+            })
+          })
+        },
+        F = s.default.header(["height:120px;padding:16px;position:absolute;z-index:100;top:0;right:0;left:0;background:linear-gradient(180deg,#366a95 0%,rgb(133 181 221 / 0%) 100%);pointer-events:none;"]),
+        D = s.default.div(["display:flex;justify-content:space-between;align-items:center;width:100%;"]),
+        _ = s.default.button(["display:flex;justify-content:center;align-items:center;gap:6px;height:48px;padding:8px 16px 8px 12px;border:0;border-radius:48px;background:var(--transparent-light-15,rgb(255 255 255 / 15%));backdrop-filter:blur(4px);cursor:pointer;pointer-events:auto;"]),
+        $ = s.default.span(["color:var(--text-primary,#fff);font-family:", ";font-size:16px;font-weight:400;line-height:22px;"], d.pQ.onyOne)
+    },
+    5946: function (e, t, i) {
+      i.d(t, {
+        YW: function () {
+          return k
+        },
+        zB: function () {
+          return C
+        },
+        lM: function () {
+          return l
+        }
+      });
+      var s = i(7871),
+        r = i(669),
+        n = i(7511),
+        o = i(6918),
+        a = i(4848);
+      const l = ({
+          isLoading: e = !1,
+          items: t
+        }) => (0, a.jsxs)(a.Fragment, {
+          children: [t.map(e => (0, a.jsxs)(d, {
+            children: [(0, a.jsx)(b, {
+              children: e.date
+            }), (0, a.jsx)(y, {
+              value: e.duration
+            }), (0, a.jsxs)(v, {
+              children: [e.points, (0, a.jsx)(r.I, {
+                "aria-hidden": "true",
+                name: "layer",
+                size: 20
+              })]
+            })]
+          }, e.id)), e && Array.from({
+            length: 7
+          }, (e, t) => (0, a.jsx)(c, {}, "skeleton-" + t))]
+        }),
+        c = () => (0, a.jsxs)(p, {
+          "aria-hidden": "true",
+          children: [(0, a.jsx)(f, {}), (0, a.jsx)(u, {}), (0, a.jsxs)(m, {
+            children: [(0, a.jsx)(x, {}), (0, a.jsx)(g, {})]
+          })]
+        }),
+        d = s.default.article(["display:grid;align-items:center;column-gap:12px;min-height:48px;padding:4px 16px;grid-template-columns:minmax(0,1fr) max-content max-content;border-radius:16px;background:rgb(255 255 255 / 5%);"]),
+        p = s.default.article(["display:grid;align-items:center;column-gap:12px;min-height:48px;padding:4px 16px;grid-template-columns:minmax(0,1fr) 48px max-content;border-radius:16px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        h = s.default.span(["display:block;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        f = (0, s.default)(h)(["width:100%;height:16px;"]),
+        u = s.default.span(["width:48px;height:100%;"]),
+        m = s.default.span(["display:flex;justify-content:flex-end;align-items:center;gap:4px;height:100%;"]),
+        x = (0, s.default)(h)(["width:64px;height:16px;"]),
+        g = (0, s.default)(h)(["width:20px;height:20px;"]),
+        b = s.default.span(["overflow:hidden;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], o.pQ.onyOne),
+        y = (0, s.default)(n.z)(["overflow:hidden;color:rgb(255 255 255 / 75%);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;text-align:right;white-space:nowrap;font-family:", ";font-size:14px;font-weight:400;line-height:18px;"], o.pQ.onyOne),
+        v = s.default.span(["display:flex;justify-content:flex-end;align-items:center;gap:2px;overflow:hidden;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], o.pQ.onyOne),
+        w = new Intl.NumberFormat("ru-RU"),
+        k = ({
+          items: e
+        }) => (0, a.jsx)(a.Fragment, {
+          children: e.map(e => (0, a.jsxs)(j, {
+            children: [(0, a.jsx)(M, {
+              children: e.date
+            }), (0, a.jsxs)(R, {
+              children: [w.format(e.points), (0, a.jsx)(r.I, {
+                "aria-hidden": "true",
+                name: "freebet",
+                size: 20
+              })]
+            })]
+          }, e.id))
+        }),
+        j = s.default.article(["display:flex;align-items:center;min-height:48px;padding:4px 16px;border-radius:16px;background:rgb(255 255 255 / 5%);"]),
+        M = s.default.span(["overflow:hidden;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], o.pQ.onyOne),
+        R = s.default.span(["display:flex;align-items:center;gap:2px;margin-left:auto;color:#fff;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-family:", ";font-size:14px;font-weight:400;line-height:20px;white-space:nowrap;"], o.pQ.onyOne);
+      var z = i(5584),
+        S = i(7791);
+      const C = ({
+          onClose: e
+        }) => (0, a.jsxs)(A, {
+          role: "status",
+          children: [(0, a.jsx)(F, {
+            children: "Все заработанные тобой фрибеты будут начислены автоматически на баланс аккаунта до 12:00 мск следующего дня"
+          }), (0, a.jsx)(D, {
+            alt: "",
+            "aria-hidden": "true",
+            src: S
+          }), (0, a.jsx)(_, {
+            "aria-label": "Закрыть уведомление",
+            onClick: e,
+            type: "button",
+            children: (0, a.jsx)(z.A, {
+              "aria-hidden": "true"
+            })
+          })]
+        }),
+        A = s.default.aside(["display:flex;align-items:flex-start;gap:4px;flex:none;width:100%;min-height:64px;margin-top:24px;padding:8px 8px 0 16px;overflow:hidden;border-radius:16px;background:rgb(255 255 255 / 10%);"]),
+        F = s.default.p(["flex:1;min-width:0;margin:0;padding:4px 0 12px;color:#fff;font-feature-settings:'liga' off,'clig' off;font-family:", ";font-size:12px;font-weight:400;line-height:14px;"], o.pQ.onyOne),
+        D = s.default.img(["align-self:flex-end;flex:0 0 93px;width:93px;height:auto;object-fit:contain;pointer-events:none;"]),
+        _ = s.default.button(["display:flex;flex:0 0 20px;justify-content:center;align-items:center;width:20px;height:20px;padding:0;border:0;background:transparent;cursor:pointer;svg{width:20px;height:20px;}"])
+    },
+    9727: function (e, t, i) {
+      i.d(t, {
+        V: function () {
+          return f
+        }
+      });
+      var s = i(1208),
+        r = i(7871),
+        n = i(38);
+      const o = [{
+          icon: "home",
+          label: "Игра",
+          to: "/start"
+        }, {
+          icon: "help",
+          label: "Об акции",
+          to: "/prize"
+        }, {
+          icon: "history",
+          label: "История",
+          to: "/history"
+        }, {
+          icon: "cup",
+          label: "Рейтинг",
+          to: "/rating"
+        }],
+        a = [{
+          icon: "clapperboard",
+          label: "Итоги",
+          to: "/results"
+        }, {
+          icon: "help",
+          label: "Об акции",
+          to: "/prize"
+        }, {
+          icon: "history",
+          label: "История",
+          to: "/history"
+        }, {
+          icon: "cup",
+          label: "Победители",
+          to: "/winners"
+        }];
+      var l = i(7795),
+        c = i(669),
+        d = i(5887),
+        p = i(6918),
+        h = i(4848);
+      const f = () => {
+          const {
+            pathname: e
+          } = (0, s.useLocation)(), t = (0, n.useUnit)(l.Q9), i = (0, d.A)(), r = t?.experience.navigation_variant ?? "game", p = (f = r, g = t?.participation_status, ("results" === f ? a : o).filter(e => "/history" !== e.to || "not_joined" !== g));
+          var f, g;
+          const b = "/game" !== e && "awaiting_results" !== t?.experience.phase;
+          return (0, h.jsx)(u, {
+            $visible: b,
+            "aria-hidden": !b,
+            "aria-label": "Основная навигация",
+            children: p.map(({
+              icon: t,
+              label: s,
+              to: r
+            }) => {
+              const n = e === r || "/start" === r && "/game" === e || "/winners" === r && "/rating" === e;
+              return (0, h.jsx)(m, {
+                "aria-current": n ? "page" : void 0,
+                "aria-label": s,
+                className: n ? "is-active" : void 0,
+                onClick: () => (t => {
+                  const s = {
+                    "/start:/history": i.mainHistory,
+                    "/start:/prize": i.mainRules,
+                    "/start:/rating": i.mainEndResultsRating,
+                    "/history:/start": i.historyMain,
+                    "/history:/prize": i.historyRules,
+                    "/history:/rating": i.historyEndResultsRating,
+                    "/history:/results": i.historyEndResults,
+                    "/history:/winners": i.historyEndResultsRating,
+                    "/rating:/start": i.endResultsRatingMain,
+                    "/rating:/history": i.endResultsRatingHistory,
+                    "/rating:/prize": i.endResultsRatingRules,
+                    "/results:/history": i.endResultsHistory,
+                    "/results:/winners": i.endResultsRating,
+                    "/results:/prize": i.endResultsRules,
+                    "/winners:/results": i.endResultsRatingEndResults,
+                    "/winners:/history": i.endResultsRatingHistory,
+                    "/winners:/prize": i.endResultsRatingRules
+                  };
+                  s[`${e}:${t}`]?.()
+                })(r),
+                to: r,
+                children: (0, h.jsxs)(h.Fragment, {
+                  children: [(0, h.jsx)(c.I, {
+                    "aria-hidden": "true",
+                    name: t,
+                    size: 24
+                  }), (0, h.jsx)(x, {
+                    $isActive: n,
+                    children: s
+                  })]
+                })
+              }, r)
+            })
+          })
+        },
+        u = r.default.nav(["display:flex;justify-content:center;align-items:center;padding:4px;position:absolute;z-index:100;bottom:var(--navigation-bottom);left:50%;border-radius:40px;background:rgb(255 255 255 / 5%);backdrop-filter:blur(12px);opacity:", ";transform:translate(-50%,", ");visibility:", ";transition:opacity var(--bottom-controls-opacity-duration) ease,transform var(--bottom-controls-transform-duration) var(--bottom-controls-exit-easing),visibility 0s linear ", ";pointer-events:", ";"], ({
+          $visible: e
+        }) => e ? 1 : 0, ({
+          $visible: e
+        }) => e ? "0" : "120px", ({
+          $visible: e
+        }) => e ? "visible" : "hidden", ({
+          $visible: e
+        }) => e ? "0s" : "var(--bottom-controls-transform-duration)", ({
+          $visible: e
+        }) => e ? "auto" : "none"),
+        m = (0, r.default)(s.NavLink)(["display:flex;justify-content:center;align-items:center;padding:12px;position:relative;border-radius:24px;background:transparent;color:rgb(255 255 255 / 75%);text-decoration:none;transition:color 200ms ease,background-color 200ms ease,padding 200ms ease;svg path{fill:currentcolor;}&.is-active{padding:12px 16px 12px 12px;background:rgb(255 255 255 / 10%);color:#fff;}"]),
+        x = r.default.span(["display:block;margin-left:", ";max-width:", ";overflow:hidden;color:inherit;font-family:", ";font-size:14px;font-weight:400;line-height:20px;white-space:nowrap;letter-spacing:0;opacity:", ";transition:max-width 200ms ease,margin-left 200ms ease,opacity 150ms ease;"], ({
+          $isActive: e
+        }) => e ? "8px" : "0", ({
+          $isActive: e
+        }) => e ? "100px" : "0", p.pQ.onyOne, ({
+          $isActive: e
+        }) => e ? 1 : 0)
+    },
+    9856: function (e, t, i) {
+      i.d(t, {
+        d_: function () {
+          return c
+        },
+        op: function () {
+          return w
+        },
+        Or: function () {
+          return H
+        }
+      });
+      var s = i(2427),
+        r = i(7871),
+        n = i(8488),
+        o = i(669),
+        a = i(6918),
+        l = i(4848);
+      const c = 999,
+        d = ({
+          url: e,
+          background: t
+        }) => e ? (0, l.jsx)(g, {
+          alt: "",
+          $background: t,
+          src: e
+        }) : (0, l.jsx)(b, {
+          $background: t,
+          children: (0, l.jsx)(n.A, {
+            "aria-hidden": "true"
+          })
+        }),
+        p = ({
+          isCurrent: e = !1,
+          showTime: t,
+          user: i
+        }) => {
+          return (0, l.jsxs)(x, {
+            $isCurrent: e,
+            $isOverflow: e && i.place > c,
+            children: [(0, l.jsx)(h, {
+              children: (s = i.place, s > c ? `${c}+` : String(s))
+            }), (0, l.jsxs)(f, {
+              children: [(0, l.jsx)(d, {
+                background: i.avatarBackground,
+                url: i.avatarUrl
+              }), (0, l.jsx)(y, {
+                children: i.name
+              })]
+            }), (0, l.jsxs)(u, {
+              children: [t && (0, l.jsx)(m, {
+                children: i.time
+              }), (0, l.jsxs)(v, {
+                children: [i.balance, (0, l.jsx)(o.I, {
+                  "aria-hidden": "true",
+                  name: "layer",
+                  size: 16
+                })]
+              })]
+            })]
+          });
+          var s
+        },
+        h = r.default.span(["width:32px;color:#fff;text-align:center;font-feature-settings:'liga' off,'clig' off;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], a.pQ.onyOne),
+        f = r.default.div(["display:flex;align-items:center;gap:12px;position:absolute;top:50%;left:32px;transform:translateY(-50%);"]),
+        u = r.default.div(["display:flex;align-items:center;gap:12px;margin-left:auto;"]),
+        m = r.default.span(["color:rgb(255 255 255 / 75%);text-align:right;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], a.pQ.onyOne),
+        x = r.default.article(["display:flex;align-items:center;justify-content:space-between;width:", ";min-height:40px;margin-left:", ";padding:", ";position:relative;border-radius:", ";background:", ";", "{left:", ";}"], ({
+          $isCurrent: e
+        }) => e ? "calc(100% + 16px)" : "100%", ({
+          $isCurrent: e
+        }) => e ? "-8px" : "0", ({
+          $isCurrent: e
+        }) => e ? "0 8px" : "0", ({
+          $isCurrent: e
+        }) => e ? "12px" : "0", ({
+          $isCurrent: e
+        }) => e ? "var(--opacity-light-5, rgba(255, 255, 255, 0.05))" : "transparent", f, ({
+          $isCurrent: e,
+          $isOverflow: t
+        }) => t ? "44px" : e ? "40px" : "32px"),
+        g = r.default.img(["width:32px;height:32px;border:0.8px solid #fff;border-radius:8px;object-fit:cover;background:", ";"], ({
+          $background: e
+        }) => e ?? "transparent"),
+        b = r.default.span(["display:flex;flex:0 0 32px;justify-content:center;align-items:center;width:32px;height:32px;border-radius:8px;background:", ";svg{width:16px;height:16px;}"], ({
+          $background: e
+        }) => e ?? "#606266"),
+        y = r.default.span(["overflow:hidden;max-width:150px;color:#fff;font-feature-settings:'liga' off,'clig' off;text-overflow:ellipsis;white-space:nowrap;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], a.pQ.onyOne),
+        v = r.default.span(["display:flex;align-items:center;gap:4px;margin-left:auto;white-space:nowrap;color:#fff;text-align:right;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:'liga' off,'clig' off;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], a.pQ.onyOne),
+        w = ({
+          currentUserId: e,
+          isLoading: t,
+          sentinelRef: i,
+          showTime: r,
+          users: n
+        }) => {
+          const o = t,
+            a = (0, s.useRef)(null);
+          return (0, s.useEffect)(() => {
+            a.current && (a.current.scrollTop = 0)
+          }, [r]), (0, l.jsxs)(j, {
+            "aria-busy": t,
+            children: [(0, l.jsxs)(M, {
+              children: [(0, l.jsxs)(R, {
+                children: [(0, l.jsx)("span", {
+                  children: "№"
+                }), (0, l.jsx)("span", {
+                  children: "Игрок"
+                })]
+              }), (0, l.jsx)("span", {
+                children: r ? "Результат дня" : "Баланс"
+              })]
+            }), (0, l.jsxs)(z, {
+              ref: a,
+              children: [n.map(t => (0, l.jsx)(p, {
+                isCurrent: t.userId === e,
+                showTime: r,
+                user: t
+              }, t.userId)), o && Array.from({
+                length: 6
+              }, (e, t) => (0, l.jsx)(k, {}, `skeleton-${t}`)), (0, l.jsx)(L, {
+                ref: i
+              })]
+            })]
+          })
+        },
+        k = () => (0, l.jsxs)(S, {
+          "aria-hidden": "true",
+          children: [(0, l.jsx)(C, {}), (0, l.jsxs)(A, {
+            children: [(0, l.jsx)(F, {}), (0, l.jsx)(D, {})]
+          }), (0, l.jsxs)(_, {
+            children: [(0, l.jsx)($, {}), (0, l.jsx)(T, {})]
+          })]
+        }),
+        j = r.default.section(["display:flex;flex:1;gap:16px;width:100%;min-height:0;margin-top:16px;flex-direction:column;"]),
+        M = r.default.div(["display:flex;opacity:0.6;justify-content:space-between;align-items:center;height:20px;color:rgb(255 255 255 / 75%);font-feature-settings:'liga' off,'clig' off;font-family:", ";font-size:14px;font-weight:400;line-height:20px;"], a.pQ.onyOne),
+        R = r.default.div(["display:flex;flex:1;gap:8px;span:first-child{width:24px;}"]),
+        z = r.default.div(["display:flex;gap:8px;width:calc(100% + 16px);min-height:0;padding:0 8px 120px;margin-left:-8px;flex-direction:column;overflow:hidden auto;overscroll-behavior:contain;scrollbar-width:none;&::-webkit-scrollbar{display:none;}"]),
+        S = r.default.div(["display:flex;flex:0 0 40px;align-items:center;gap:12px;width:100%;min-height:40px;padding:4px 0;backdrop-filter:blur(8px);"]),
+        C = r.default.span(["flex:0 0 28px;width:28px;height:20px;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        A = r.default.div(["display:flex;flex:1 1 0;align-items:center;gap:8px;min-width:0;"]),
+        F = r.default.span(["flex:0 0 32px;width:32px;height:32px;border-radius:8px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        D = r.default.span(["flex:0 0 80px;width:80px;height:16px;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        _ = r.default.div(["display:flex;flex:0 0 auto;align-items:center;gap:4px;margin-left:auto;"]),
+        $ = r.default.span(["flex:0 0 64px;width:64px;height:16px;border-radius:12px;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        T = r.default.span(["flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:var(--opacity-light-5,rgb(255 255 255 / 5%));"]),
+        L = r.default.div(["flex:0 0 1px;height:1px;"]),
+        P = ({
+          date: e,
+          description: t,
+          image: i,
+          place: s,
+          title: r
+        }) => (0, l.jsxs)(O, {
+          children: [(0, l.jsxs)(E, {
+            children: [(0, l.jsx)(B, {
+              children: s
+            }), e && (0, l.jsx)(I, {
+              children: e
+            })]
+          }), (0, l.jsxs)(J, {
+            children: [(0, l.jsx)(N, {
+              children: r
+            }), t && (0, l.jsx)(Y, {
+              children: t
+            })]
+          }), (0, l.jsx)(Q, {
+            children: (0, l.jsx)(U, {
+              alt: "",
+              src: i
+            })
+          })]
+        }),
+        O = r.default.article(["display:flex;flex:0 0 100%;align-items:center;gap:8px;width:100%;min-height:176px;padding:16px;border:1px solid rgb(255 255 255 / 10%);border-radius:24px;position:relative;overflow:hidden;background:rgb(255 255 255 / 5%);scroll-snap-align:start;"]),
+        E = r.default.div(["display:flex;gap:4px;position:absolute;z-index:2;top:-1px;left:22px;"]),
+        B = r.default.span(["display:flex;align-items:center;height:24px;padding:0 12px;border-radius:0 0 16px 16px;background:rgb(255 255 255 / 10%);color:#fff;font-family:", ";font-size:12px;line-height:14px;white-space:nowrap;backdrop-filter:blur(8px);"], a.pQ.onyOne),
+        I = (0, r.default)(B)(["background:#f8f700;color:#090a0a;font-feature-settings:'liga' off,'clig' off;"]),
+        J = r.default.div(["display:flex;flex:1 1 0;justify-content:flex-end;gap:8px;min-width:0;align-self:stretch;flex-direction:column;"]),
+        N = r.default.h3(["margin:0;color:#fff;font-family:", ";font-size:16px;font-weight:500;line-height:20px;white-space:nowrap;"], a.pQ.onyOne),
+        Y = r.default.p(["margin:0;color:rgb(255 255 255 / 75%);font-family:", ";font-size:14px;line-height:20px;"], a.pQ.onyOne),
+        Q = r.default.div(["display:flex;flex:0 0 144px;justify-content:center;align-items:center;width:144px;height:144px;overflow:hidden;"]),
+        U = r.default.img(["display:block;width:100%;height:100%;object-fit:contain;"]),
+        H = ({
+          prizes: e
+        }) => {
+          const t = (0, s.useRef)(null),
+            [i, r] = (0, s.useState)(0);
+          (0, s.useEffect)(() => {
+            t.current?.scrollTo({
+              left: 0
+            }), r(0)
+          }, [e]);
+          const n = e => {
+            const i = t.current,
+              s = i?.firstElementChild;
+            i && s && i.scrollBy({
+              behavior: "smooth",
+              left: e * (s.offsetWidth + 8)
+            })
+          };
+          return (0, l.jsxs)(q, {
+            children: [(0, l.jsx)(W, {
+              onScroll: () => {
+                const i = t.current,
+                  s = i?.firstElementChild;
+                i && s && r(Math.min(e.length - 1, Math.max(0, Math.round(i.scrollLeft / (s.offsetWidth + 8)))))
+              },
+              ref: t,
+              children: e.map(e => (0, l.jsx)(P, {
+                ...e
+              }, `${e.place}-${e.title}`))
+            }), i > 0 && (0, l.jsx)(V, {
+              $direction: "previous",
+              "aria-label": "Предыдущий приз",
+              onClick: () => n(-1),
+              type: "button",
+              children: (0, l.jsx)(o.I, {
+                "aria-hidden": "true",
+                name: "chevron-right-small",
+                size: 24
+              })
+            }), i < e.length - 1 && (0, l.jsx)(V, {
+              $direction: "next",
+              "aria-label": "Следующий приз",
+              onClick: () => n(1),
+              type: "button",
+              children: (0, l.jsx)(o.I, {
+                "aria-hidden": "true",
+                name: "chevron-right-small",
+                size: 24
+              })
+            })]
+          })
+        },
+        q = r.default.div(["width:calc(100% + 32px);margin-top:16px;margin-right:-16px;margin-left:-16px;position:relative;"]),
+        W = r.default.div(["display:flex;column-gap:8px;padding:0 16px;overflow-x:auto;scroll-padding-inline:16px;scroll-snap-type:x mandatory;scrollbar-width:none;&::-webkit-scrollbar{display:none;}"]),
+        V = r.default.button(["display:flex;flex:0 0 32px;justify-content:center;align-items:center;width:32px;height:32px;padding:8px;border-radius:40px;background:rgb(255 255 255 / 10%);backdrop-filter:blur(10px);border:none;outline:none;cursor:pointer;position:absolute;top:50%;", " transform:translateY(-50%);svg{display:block;flex:none;width:24px;height:24px;}", " &:active{transform:translateY(-50%) scale(0.96);}"], ({
+          $direction: e
+        }) => ("previous" === e ? "left" : "right") + ": 4px;", ({
+          $direction: e
+        }) => "previous" === e && "svg { transform: rotate(180deg); }")
+    }
+  }
+]);
