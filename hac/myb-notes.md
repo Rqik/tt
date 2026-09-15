@@ -47,7 +47,26 @@ pause() {
   crossZ: this.placed[this.placed.length - 1].pz
 }, false)
 
+В hac/ne.js поставь Conditional breakpoint на строке 1950, перед:
+d(r) && (i || "idle" !== t.state ? t.queueTap(r) : Y())
+Условие:
+(r.isTrusted = true, r.hidden = false, false)
 
+
+
+// Сохранить
+const originalGameOver = game.gameOver;
+const hadOwnGameOver = Object.hasOwn(game, "gameOver");
+
+// Заменить
+game.gameOver = () => {};
+
+// Вернуть позже
+if (hadOwnGameOver) {
+  game.gameOver = originalGameOver;
+} else {
+  delete game.gameOver;
+}
 ```
 
 
