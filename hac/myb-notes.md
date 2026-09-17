@@ -55,11 +55,11 @@ d(r) && (i || "idle" !== t.state ? t.queueTap(r) : Y())
 
 
 // Сохранить
-const originalGameOver = game.gameOver;
+const originalGameOver = this.gameOver;
 const hadOwnGameOver = Object.hasOwn(game, "gameOver");
 
 // Заменить
-game.gameOver = () => {};
+this.gameOver = () => {};
 
 // Вернуть позже
 if (hadOwnGameOver) {
